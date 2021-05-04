@@ -22,23 +22,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="一、递归1、常见的递归 斐波那契数列 阶乘 n! &#x3D; n * (n-1) * (n-2) * …* 1(n&gt;0) 汉诺塔问题 全排列">
+  <meta name="description" content="一、分支程序">
 <meta property="og:type" content="article">
-<meta property="og:title" content="迭代与递归的区别">
-<meta property="og:url" content="http://example.com/2021/04/11/%E8%BF%AD%E4%BB%A3%E4%B8%8E%E9%80%92%E5%BD%92%E7%9A%84%E5%8C%BA%E5%88%AB/index.html">
+<meta property="og:title" content="汇编实验代码">
+<meta property="og:url" content="http://example.com/2021/05/04/%E6%B1%87%E7%BC%96%E5%AE%9E%E9%AA%8C%E4%BB%A3%E7%A0%81/index.html">
 <meta property="og:site_name" content="苦行僧">
-<meta property="og:description" content="一、递归1、常见的递归 斐波那契数列 阶乘 n! &#x3D; n * (n-1) * (n-2) * …* 1(n&gt;0) 汉诺塔问题 全排列">
+<meta property="og:description" content="一、分支程序">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2021/04/11/%E8%BF%AD%E4%BB%A3%E4%B8%8E%E9%80%92%E5%BD%92%E7%9A%84%E5%8C%BA%E5%88%AB/1.png">
-<meta property="article:published_time" content="2021-04-11T02:27:57.000Z">
-<meta property="article:modified_time" content="2021-04-11T02:51:42.149Z">
+<meta property="article:published_time" content="2021-05-04T11:50:57.000Z">
+<meta property="article:modified_time" content="2021-05-04T12:01:19.252Z">
 <meta property="article:author" content="康慧春">
-<meta property="article:tag" content="递归">
-<meta property="article:tag" content="迭代">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/04/11/%E8%BF%AD%E4%BB%A3%E4%B8%8E%E9%80%92%E5%BD%92%E7%9A%84%E5%8C%BA%E5%88%AB/1.png">
 
-<link rel="canonical" href="http://example.com/2021/04/11/%E8%BF%AD%E4%BB%A3%E4%B8%8E%E9%80%92%E5%BD%92%E7%9A%84%E5%8C%BA%E5%88%AB/">
+<link rel="canonical" href="http://example.com/2021/05/04/%E6%B1%87%E7%BC%96%E5%AE%9E%E9%AA%8C%E4%BB%A3%E7%A0%81/">
 
 
 <script id="page-configurations">
@@ -51,7 +47,7 @@
   };
 </script>
 
-  <title>迭代与递归的区别 | 苦行僧</title>
+  <title>汇编实验代码 | 苦行僧</title>
   
 
 
@@ -166,7 +162,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/11/%E8%BF%AD%E4%BB%A3%E4%B8%8E%E9%80%92%E5%BD%92%E7%9A%84%E5%8C%BA%E5%88%AB/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/04/%E6%B1%87%E7%BC%96%E5%AE%9E%E9%AA%8C%E4%BB%A3%E7%A0%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/aaa.gif">
@@ -179,7 +175,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          迭代与递归的区别
+          汇编实验代码
         </h1>
 
         <div class="post-meta">
@@ -190,7 +186,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-04-11 10:27:57 / 修改时间：10:51:42" itemprop="dateCreated datePublished" datetime="2021-04-11T10:27:57+08:00">2021-04-11</time>
+              <time title="创建时间：2021-05-04 19:50:57 / 修改时间：20:01:19" itemprop="dateCreated datePublished" datetime="2021-05-04T19:50:57+08:00">2021-05-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -198,7 +194,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E6%B1%87%E7%BC%96/" itemprop="url" rel="index"><span itemprop="name">汇编</span></a>
                 </span>
             </span>
 
@@ -218,8 +214,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/04/11/%E8%BF%AD%E4%BB%A3%E4%B8%8E%E9%80%92%E5%BD%92%E7%9A%84%E5%8C%BA%E5%88%AB/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/11/%E8%BF%AD%E4%BB%A3%E4%B8%8E%E9%80%92%E5%BD%92%E7%9A%84%E5%8C%BA%E5%88%AB/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/05/04/%E6%B1%87%E7%BC%96%E5%AE%9E%E9%AA%8C%E4%BB%A3%E7%A0%81/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/04/%E6%B1%87%E7%BC%96%E5%AE%9E%E9%AA%8C%E4%BB%A3%E7%A0%81/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -234,44 +230,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="一、递归"><a href="#一、递归" class="headerlink" title="一、递归"></a>一、递归</h2><h3 id="1、常见的递归"><a href="#1、常见的递归" class="headerlink" title="1、常见的递归"></a>1、常见的递归</h3><ul>
-<li>斐波那契数列</li>
-<li>阶乘 <code>n! = n * (n-1) * (n-2) * …* 1(n&gt;0)</code></li>
-<li>汉诺塔问题</li>
-<li>全排列</li>
-</ul>
-<span id="more"></span>
+        <h2 id="一、分支程序"><a href="#一、分支程序" class="headerlink" title="一、分支程序"></a>一、分支程序</h2><span id="more"></span>
 
+<p><strong>已知X、Y、Z、MAX为16位的带符号数，求三个数中最大值，结果存入MAX单元。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">STACK     SEGMENT STACK</span><br><span class="line">DB        50 DUP(0)</span><br><span class="line">STACK     ENDS</span><br><span class="line">DATA      SEGMENT</span><br><span class="line">NUM       DB 81,78,98,99,90,78,58,80,90,87</span><br><span class="line">          MAX DB ?</span><br><span class="line">DATA      ENDS</span><br><span class="line">CODE      SEGMENT</span><br><span class="line">          ASSUME CS:CODE,DS:DATA,SS:STACK</span><br><span class="line">START:    MOV AX,DATA</span><br><span class="line">          MOV DS,AX</span><br><span class="line">          MOV CX,10</span><br><span class="line">          MOV BX,0</span><br><span class="line">          MOV AL,NUM[BX]</span><br><span class="line">AGAIN: INC BX</span><br><span class="line">          CMP NUM[BX],AL</span><br><span class="line">          JGE NEXT</span><br><span class="line">          XCHG AL,NUM[BX]</span><br><span class="line">NEXT: LOOP AGAIN</span><br><span class="line">          MOV MAX,AL</span><br><span class="line">          MOV AH,4CH</span><br><span class="line">          INT 21H</span><br><span class="line">CODE      ENDS</span><br><span class="line">END       START</span><br></pre></td></tr></table></figure>
 
+<h2 id="二、循环程序"><a href="#二、循环程序" class="headerlink" title="二、循环程序"></a>二、循环程序</h2><p><strong>求10个学生成绩中的最高成绩，结果存入MAX字节单元中，已知成绩为字节型。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">STACK  	SEGMENT   STACK </span><br><span class="line">        DB  50 DUP(0) </span><br><span class="line">STACK   ENDS </span><br><span class="line">DATA	SEGMENT </span><br><span class="line">NUM		DB   11101010B,4,7FH</span><br><span class="line">MAX		DB	?</span><br><span class="line">DATA	ENDS</span><br><span class="line">CODE	SEGMENT</span><br><span class="line">ASSUME  CS:CODE,DS:DATA,SS:STACK</span><br><span class="line">START: 	MOV  AX , DATA </span><br><span class="line">        MOV  DS, AX </span><br><span class="line">        MOV  AL, NUM    		 </span><br><span class="line">        CMP  AL, NUM[1]</span><br><span class="line">        JGE  NEXT1                 </span><br><span class="line">        MOV  AL, NUM[1]                 </span><br><span class="line">NEXT1:  CMP  AL, NUM[2] </span><br><span class="line">		JGE  NEXT2</span><br><span class="line">        MOV  AL, NUM[2]                 	 </span><br><span class="line">NEXT2:  MOV  MAX, AL </span><br><span class="line">        MOV  AX , 4C00H            </span><br><span class="line">        INT  	21H </span><br><span class="line">CODE    ENDS </span><br><span class="line">END     START</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><img src="1.png"></p>
-<h3 id="2、何谓递归"><a href="#2、何谓递归" class="headerlink" title="2、何谓递归"></a>2、何谓递归</h3><p><strong>程序调用自身的编程技巧称为递归,是函数自己调用自己</strong></p>
-<p><strong>递归，就是在运行的过程中调用自己。</strong></p>
-<p>构成递归需具备的条件：</p>
-<ol>
-<li>子问题须与原始问题为同样的事，且更为简单；</li>
-<li>不能无限制地调用本身，须有个出口，化简为非递归状况处理。</li>
-</ol>
-<h2 id="二、迭代"><a href="#二、迭代" class="headerlink" title="二、迭代"></a>二、迭代</h2><h3 id="1、常见的迭代"><a href="#1、常见的迭代" class="headerlink" title="1、常见的迭代"></a>1、常见的迭代</h3><ul>
-<li>斐波那契数列</li>
-<li>汉诺塔问题</li>
-<li>背包问题</li>
-</ul>
-<h3 id="2、何为迭代"><a href="#2、何为迭代" class="headerlink" title="2、何为迭代"></a>2、何为迭代</h3><p><strong>利用变量的原值推算出变量的一个新值.如果递归是自己调用自己的话,迭代就是A不停的调用B。</strong></p>
-<h2 id="三、区别与关系"><a href="#三、区别与关系" class="headerlink" title="三、区别与关系"></a>三、区别与关系</h2><p><strong>从概念上讲</strong>：</p>
-<p>递归就是指程序调用自身的编程思想，即一个函数调用本身；迭代是利用已知的变量值，根据递推公式不断演进得到变量新值得编程思想。</p>
-<p><strong>简单地说：</strong></p>
-<p>递归是重复调用函数自身实现循环。迭代是函数内某段代码实现循环，而迭代与普通循环的区别是：循环代码中参与运算的变量同时是保存结果的变量，当前保存的结果作为下一次循环计算的初始值。</p>
-<p><strong>迭代与普通循环的区别是：迭代时，循环代码中参与运算的变量同时是保存结果的变量，当前保存的结果作为下一次循环计算的初始值。</strong><br>**递归与普通循环的区别是：循环是有去无回，而递归则是有去有回(因为存在终止条件)**。</p>
-<p>举例：<strong>你要给某个小孩子买玩具</strong>。</p>
-<p><strong>递归</strong>：你自己不太了解小孩子的需求，为了缩小范围，让你的儿子去给孙子挑选。儿子比你强点有限，但依然不太了解小孩子的需求。为了缩小范围，你又让你孙子去挑选。如此这般，直到找到合适的玩具。</p>
-<p><strong>迭代</strong>：你挑了一件觉得不行，又挑了一件又不行。如此这般，直到找到合适的玩具。</p>
-<p>所以一句话：递归是自己调用自己，每次旨在缩小问题规模。迭代是自己执行很多次，每次旨在更接近目标。</p>
-<p><strong>递归的实现：</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;  </span><br><span class="line">     <span class="keyword">if</span>(n&gt;<span class="number">1</span>) <span class="keyword">return</span> fib(n<span class="number">-1</span>) + fib(n<span class="number">-2</span>);  </span><br><span class="line">     <span class="keyword">else</span> <span class="keyword">return</span> n; <span class="comment">// n = 0, 1时给出recursion终止条件  </span></span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+<h2 id="三、模块化程序设计"><a href="#三、模块化程序设计" class="headerlink" title="三、模块化程序设计"></a>三、模块化程序设计</h2><p><strong>字符大小写转换的设计与调试</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">CODE    SEGMENT</span><br><span class="line">MAIN    PROC FAR         </span><br><span class="line">         ASSUME   CS:CODE </span><br><span class="line">START:   PUSH DS</span><br><span class="line">         SUB  AX,AX </span><br><span class="line">         PUSH AX</span><br><span class="line">         MOV AH,1</span><br><span class="line">         INT 21H   </span><br><span class="line">         CMP AL,&#39;A&#39;</span><br><span class="line">         JB  AA0</span><br><span class="line">         CMP AL,&#39;Z&#39;</span><br><span class="line">         JA  AA0</span><br><span class="line">         ADD AL,20H            </span><br><span class="line">         JMP AA1                   </span><br><span class="line">AA0:     CMP AL,&#39;a&#39;</span><br><span class="line">         JB  AA1</span><br><span class="line">         CMP AL,&#39;z&#39;</span><br><span class="line">         JA  AA1</span><br><span class="line">         SUB AL,20H</span><br><span class="line">         JMP AA1</span><br><span class="line">AA1:     MOV AH,2</span><br><span class="line">         MOV DL,AL</span><br><span class="line">         INT 21H</span><br><span class="line">         RET</span><br><span class="line">MAIN     ENDP</span><br><span class="line">CODE     ENDS</span><br><span class="line">END     START</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><strong>迭代的实现：</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;  </span><br><span class="line">    <span class="keyword">int</span> i, temp0, temp1, temp2;        </span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">1</span>) <span class="keyword">return</span> n;  </span><br><span class="line">    temp1 = <span class="number">0</span>;  </span><br><span class="line">    temp2 = <span class="number">1</span>;  </span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">2</span>; i &lt;= n; i++)&#123;  </span><br><span class="line">        temp0 = temp1 + temp2;  </span><br><span class="line">        temp2 = temp1;  </span><br><span class="line">        temp1 = temp0;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> temp0;  </span><br><span class="line">&#125; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>字符类型统计的设计与调试</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">STACK SEGMENT STACK</span><br><span class="line">DB 200 DUP(0)</span><br><span class="line">STACK ENDS</span><br><span class="line">DATA SEGMENT</span><br><span class="line">X  DB  &#39;0&#39;</span><br><span class="line">DATA ENDS</span><br><span class="line">CODE  SEGMENT</span><br><span class="line">ASSUME CS:CODE,DS:DATA,SS:STACK</span><br><span class="line">START: 	MOV AX,DATA</span><br><span class="line">	MOV DS,AX</span><br><span class="line">	SUB AX,AX</span><br><span class="line">	MOV BH,0</span><br><span class="line">	MOV BL,0</span><br><span class="line">	MOV DH,0	</span><br><span class="line">	MOV CX,10</span><br><span class="line">AA1:	CMP CX,0</span><br><span class="line">	JZ  STOP</span><br><span class="line">	MOV AH,1</span><br><span class="line">	INT 21H </span><br><span class="line">	CMP AL,20H</span><br><span class="line">	JB  STOP</span><br><span class="line">	CMP AL,&#39;0&#39;</span><br><span class="line">	JB  CC2</span><br><span class="line">	CMP AL,&#39;9&#39;</span><br><span class="line">	JA  CC1</span><br><span class="line">	INC BH</span><br><span class="line">	JMP NEXT1</span><br><span class="line">CC1:	CMP AL,&#39;A&#39;</span><br><span class="line">	JB CC2</span><br><span class="line">	CMP AL,&#39;Z&#39;</span><br><span class="line">	JB NEXT </span><br><span class="line">	CMP AL,&#39;a&#39;</span><br><span class="line">	JB CC2</span><br><span class="line">	CMP AL,&#39;z&#39;</span><br><span class="line">	JA CC2</span><br><span class="line">NEXT:	INC BL</span><br><span class="line">	JMP NEXT1</span><br><span class="line">CC2:	INC DH</span><br><span class="line">NEXT1:	LOOP 	AA1</span><br><span class="line">STOP:	MOV AH,2</span><br><span class="line">	MOV DL,BH</span><br><span class="line">	ADD DL,X</span><br><span class="line">	INT 21H</span><br><span class="line">	MOV AH,2</span><br><span class="line">	MOV DL,BL</span><br><span class="line">	ADD DL,X</span><br><span class="line">	INT 21H</span><br><span class="line">	MOV AH,2</span><br><span class="line">	MOV DL,DH</span><br><span class="line">	ADD DL,X</span><br><span class="line">	INT 21H</span><br><span class="line">	MOV AX,4C00H</span><br><span class="line">	INT 21H</span><br><span class="line">CODE 	ENDS</span><br><span class="line">END 	START</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -281,10 +252,6 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E9%80%92%E5%BD%92/" rel="tag"># 递归</a>
-              <a href="/tags/%E8%BF%AD%E4%BB%A3/" rel="tag"># 迭代</a>
-          </div>
 
         
 
@@ -292,13 +259,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/04/03/%E4%BF%A1%E5%8F%B7%E9%87%8F%E6%9C%BA%E5%88%B6%E4%B8%8E%E7%BB%8F%E5%85%B8%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5%E9%97%AE%E9%A2%98/" rel="prev" title="信号量机制与经典进程同步问题">
-      <i class="fa fa-chevron-left"></i> 信号量机制与经典进程同步问题
+    <a href="/2021/04/28/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/" rel="prev" title="汇编语言">
+      <i class="fa fa-chevron-left"></i> 汇编语言
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/04/12/105-%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="next" title="105. 从前序与中序遍历序列构造二叉树">
-      105. 从前序与中序遍历序列构造二叉树 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -358,7 +322,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E9%80%92%E5%BD%92"><span class="nav-text">一、递归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%B8%B8%E8%A7%81%E7%9A%84%E9%80%92%E5%BD%92"><span class="nav-text">1、常见的递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E4%BD%95%E8%B0%93%E9%80%92%E5%BD%92"><span class="nav-text">2、何谓递归</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%BF%AD%E4%BB%A3"><span class="nav-text">二、迭代</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%B8%B8%E8%A7%81%E7%9A%84%E8%BF%AD%E4%BB%A3"><span class="nav-text">1、常见的迭代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E4%BD%95%E4%B8%BA%E8%BF%AD%E4%BB%A3"><span class="nav-text">2、何为迭代</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%8C%BA%E5%88%AB%E4%B8%8E%E5%85%B3%E7%B3%BB"><span class="nav-text">三、区别与关系</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%88%86%E6%94%AF%E7%A8%8B%E5%BA%8F"><span class="nav-text">一、分支程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%BE%AA%E7%8E%AF%E7%A8%8B%E5%BA%8F"><span class="nav-text">二、循环程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%A8%A1%E5%9D%97%E5%8C%96%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="nav-text">三、模块化程序设计</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
