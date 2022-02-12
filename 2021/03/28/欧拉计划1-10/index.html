@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-big-counter.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="欧拉计划1-101、Multiples of 3 and 5If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23. Find the sum of all the multiples of 3 o">
+<meta property="og:type" content="article">
+<meta property="og:title" content="欧拉计划1-10">
+<meta property="og:url" content="http://example.com/2021/03/28/%E6%AC%A7%E6%8B%89%E8%AE%A1%E5%88%921-10/index.html">
+<meta property="og:site_name" content="苦行僧">
+<meta property="og:description" content="欧拉计划1-101、Multiples of 3 and 5If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23. Find the sum of all the multiples of 3 o">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-28T08:11:00.000Z">
+<meta property="article:modified_time" content="2021-03-28T08:12:43.020Z">
+<meta property="article:author" content="康慧春">
+<meta property="article:tag" content="欧拉计划">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2021/03/28/%E6%AC%A7%E6%8B%89%E8%AE%A1%E5%88%921-10/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>欧拉计划1-10 | 苦行僧</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+<a target="_blank" rel="noopener" href="https://github.com/2738132159" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">苦行僧</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/28/%E6%AC%A7%E6%8B%89%E8%AE%A1%E5%88%921-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aaa.gif">
+      <meta itemprop="name" content="康慧春">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="苦行僧">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          欧拉计划1-10
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-28 16:11:00 / 修改时间：16:12:43" itemprop="dateCreated datePublished" datetime="2021-03-28T16:11:00+08:00">2021-03-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="热度" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/03/28/%E6%AC%A7%E6%8B%89%E8%AE%A1%E5%88%921-10/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/28/%E6%AC%A7%E6%8B%89%E8%AE%A1%E5%88%921-10/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="欧拉计划1-10"><a href="#欧拉计划1-10" class="headerlink" title="欧拉计划1-10"></a>欧拉计划1-10</h1><h2 id="1、Multiples-of-3-and-5"><a href="#1、Multiples-of-3-and-5" class="headerlink" title="1、Multiples of 3 and 5"></a>1、Multiples of 3 and 5</h2><p>If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.</p>
+<p>Find the sum of all the multiples of 3 or 5 below 1000.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">m = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">1000</span>):</span><br><span class="line">    <span class="keyword">if</span> i % <span class="number">3</span> ==<span class="number">0</span> <span class="keyword">or</span> i % <span class="number">5</span> ==<span class="number">0</span>:</span><br><span class="line">        m = m + i;</span><br><span class="line">print(m)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Answer：</strong><code>233168</code></p>
+<hr>
+<span id="more"></span>
+
+<h2 id="2、Even-Fibonacci-numbers"><a href="#2、Even-Fibonacci-numbers" class="headerlink" title="2、Even Fibonacci numbers"></a>2、Even Fibonacci numbers</h2><p>Each new term in the Fibonacci sequence is generated by adding the previous two terms. By starting with 1 and 2, the first 10 terms will be:</p>
+<p>1, 2, 3, 5, 8, 13, 21, 34, 55, 89, …</p>
+<p>By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fib</span>(<span class="params">n</span>):</span></span><br><span class="line">    a,b = <span class="number">1</span>,<span class="number">2</span></span><br><span class="line">    c = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> a &lt; n:</span><br><span class="line">        a,b = b,a+b //序列解包</span><br><span class="line">        <span class="keyword">if</span> a%<span class="number">2</span> ==<span class="number">0</span>:</span><br><span class="line">            c=c+a</span><br><span class="line">    print(c)</span><br><span class="line"></span><br><span class="line">fib(<span class="number">4000000</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Answer：</strong><code>4613732</code></p>
+<hr>
+<h2 id="3、Largest-prime-factor"><a href="#3、Largest-prime-factor" class="headerlink" title="3、Largest prime factor"></a>3、Largest prime factor</h2><p>The prime factors of 13195 are 5, 7, 13 and 29.</p>
+<p>What is the largest prime factor of the number 600851475143 ?</p>
+<blockquote>
+<p>每个合数都可以写成几个质数(也可称为素数)相乘的形式，这几个质数就就叫做这个合数的质因数。</p>
+<p>找出这几个质因数中最大的质数即为原数的最大质因数</p>
+</blockquote>
+<ul>
+<li>最大质因数不会大于平方根，所以从平方根倒推回去，能整除又是质数就是答案</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">zhishu</span>(<span class="params">n</span>):</span>				//判断是不是质数</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">elif</span> n &lt; <span class="number">2</span> <span class="keyword">or</span> n % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>, <span class="built_in">int</span>(n ** <span class="number">0.5</span>) + <span class="number">1</span>, <span class="number">2</span>):</span><br><span class="line">        <span class="keyword">if</span> n % i == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">//缩小范围到平方根</span><br><span class="line">n = <span class="number">600851475143</span></span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">int</span>(n ** <span class="number">0.5</span>) + <span class="number">1</span>, <span class="number">2</span>, -<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">if</span> n % k == <span class="number">0</span> <span class="keyword">and</span> zhishu(k):</span><br><span class="line">        print(k)</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Answer：</strong><code>6857</code></p>
+<hr>
+<h2 id="4、Largest-palindrome-product"><a href="#4、Largest-palindrome-product" class="headerlink" title="4、Largest palindrome product"></a>4、Largest palindrome product</h2><p>A palindromic number reads the same both ways.</p>
+<p> The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.</p>
+<p>Find the largest palindrome made from the product of two 3-digit numbers.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显然结果不会太小，从500起步足够了</span></span><br><span class="line"><span class="comment"># 先将乘积用list降序排列，再判断是否回文</span></span><br><span class="line">lst=[i*k <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">500</span>,<span class="number">999</span>) <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">500</span>,<span class="number">999</span>)]</span><br><span class="line">lst.sort(reverse=<span class="literal">True</span>)</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> lst:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">str</span>(x) == <span class="built_in">str</span>(x)[::-<span class="number">1</span>]:</span><br><span class="line">        print(x)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Answer：</strong><code>906609</code></p>
+<hr>
+<h2 id="5、Smallest-multiple"><a href="#5、Smallest-multiple" class="headerlink" title="5、Smallest multiple"></a>5、Smallest multiple</h2><p>2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.</p>
+<p>What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?</p>
+<p><strong>中文大意：最小能被1到20整除的正整数是多少？</strong></p>
+<ul>
+<li>直接辗转相除法求最小公倍数</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gcd</span>(<span class="params">x, y</span>):</span></span><br><span class="line">    <span class="keyword">if</span> x &lt; y:</span><br><span class="line">        x, y = y, x</span><br><span class="line">    <span class="keyword">while</span> y:</span><br><span class="line">        x, y = y, x % y</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lcm</span>(<span class="params">x, y</span>):</span></span><br><span class="line">    <span class="keyword">return</span> x * y / gcd(x, y)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ans = <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, <span class="number">21</span>):</span><br><span class="line">    ans = lcm(ans, x)</span><br><span class="line">print(ans)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Answer：</strong><code>232792560</code></p>
+<hr>
+<h2 id="6、Sum-square-difference"><a href="#6、Sum-square-difference" class="headerlink" title="6、Sum square difference"></a>6、Sum square difference</h2><p>The sum of the squares of the first ten natural numbers is,</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span><span class="operator">^</span><span class="number">2</span> <span class="operator">+</span> <span class="number">2</span><span class="operator">^</span><span class="number">2</span> <span class="operator">+</span> <span class="operator">...</span> <span class="operator">+</span> <span class="number">10</span><span class="operator">^</span><span class="number">2</span> <span class="operator">=</span> <span class="number">385</span></span><br></pre></td></tr></table></figure>
+
+<p>The square of the sum of the first ten natural numbers is,</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">(</span><span class="number">1</span> <span class="operator">+</span> <span class="number">2</span> <span class="operator">+</span> <span class="operator">...</span> <span class="operator">+</span> <span class="number">10</span><span class="punctuation">)</span><span class="operator">^</span><span class="number">2</span> <span class="operator">=</span> <span class="number">55</span><span class="operator">^</span><span class="number">2</span> <span class="operator">=</span> <span class="number">3025</span></span><br></pre></td></tr></table></figure>
+
+<p>Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is </p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3025</span> <span class="operator">-</span> <span class="number">385</span> <span class="operator">=</span> <span class="number">2640</span></span><br></pre></td></tr></table></figure>
+
+<p>Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.</p>
+<p><strong>中文大意：计算1~100和的平方和平方和之差</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="built_in">sum</span>(<span class="built_in">range</span>(<span class="number">101</span>))**<span class="number">2</span> - <span class="built_in">sum</span>(x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">101</span>)))</span><br></pre></td></tr></table></figure>
+
+<p><strong>Answer：</strong><code>25164150</code></p>
+<hr>
+<h2 id="7、10001st-prime"><a href="#7、10001st-prime" class="headerlink" title="7、10001st prime"></a>7、10001st prime</h2><p>By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.</p>
+<p>What is the 10 001st prime number?</p>
+<p><strong>中文大意：求第10001个质数</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">zhishu</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">elif</span> n % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>,<span class="built_in">int</span>(math.sqrt(n)+<span class="number">1</span>),<span class="number">2</span>):</span><br><span class="line">            <span class="keyword">if</span> n % i ==<span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">n = <span class="number">3</span></span><br><span class="line">i = <span class="number">2</span></span><br><span class="line"><span class="keyword">while</span> i &lt; <span class="number">10002</span>:</span><br><span class="line">    <span class="keyword">if</span> zhishu(n):</span><br><span class="line">        i = i+<span class="number">1</span></span><br><span class="line">    n = n+<span class="number">2</span></span><br><span class="line">print(n-<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>我们不需要从1除到n-1，取中间值，如果除到这个中间值依旧余数不为0，那么也没有继续往下除的意义了，这个数必然是个质数</li>
+<li>我们剔除掉所有可以被2整除的数，这样就可以先判断一个数是否是偶数，然后奇数的部分再判断是否是质数</li>
+<li>2是第1个质数，3是第二个质数，同样的，我们计算的时候刨除偶数n</li>
+</ul>
+<p><strong>Answer：</strong><code>104743</code></p>
+<hr>
+<h2 id="8、Largest-product-in-a-series"><a href="#8、Largest-product-in-a-series" class="headerlink" title="8、Largest product in a series"></a>8、Largest product in a series</h2><p>The four adjacent digits in the 1000-digit number that have the greatest product are 9 × 9 × 8 × 9 = 5832.</p>
+<p><code>73167176531330624919225119674426574742355349194934</code><br><code>96983520312774506326239578318016984801869478851843</code><br><code>85861560789112949495459501737958331952853208805511</code><br><code>12540698747158523863050715693290963295227443043557</code><br><code>66896648950445244523161731856403098711121722383113</code><br><code>62229893423380308135336276614282806444486645238749</code><br><code>30358907296290491560440772390713810515859307960866</code><br><code>70172427121883998797908792274921901699720888093776</code><br><code>65727333001053367881220235421809751254540594752243</code><br><code>52584907711670556013604839586446706324415722155397</code><br><code>53697817977846174064955149290862569321978468622482</code><br><code>83972241375657056057490261407972968652414535100474</code><br><code>82166370484403199890008895243450658541227588666881</code><br><code>16427171479924442928230863465674813919123162824586</code><br><code>17866458359124566529476545682848912883142607690042</code><br><code>24219022671055626321111109370544217506941658960408</code><br><code>07198403850962455444362981230987879927244284909188</code><br><code>84580156166097919133875499200524063689912560717606</code><br><code>05886116467109405077541002256983155200055935729725</code><br><code>71636269561882670428252483600823257530420752963450</code></p>
+<p>Find the thirteen adjacent digits in the 1000-digit number that have the greatest product. What is the value of this product?</p>
+<p><strong>中文大意：找出这个1000位整数中连续13个数字的最大乘积</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">n1 = <span class="string">&#x27;73167176531330624919225119674426574742355349194934&#x27;</span></span><br><span class="line">n2 = <span class="string">&#x27;96983520312774506326239578318016984801869478851843&#x27;</span></span><br><span class="line">n3 = <span class="string">&#x27;85861560789112949495459501737958331952853208805511&#x27;</span></span><br><span class="line">n4 = <span class="string">&#x27;12540698747158523863050715693290963295227443043557&#x27;</span></span><br><span class="line">n5 = <span class="string">&#x27;66896648950445244523161731856403098711121722383113&#x27;</span></span><br><span class="line">n6 = <span class="string">&#x27;62229893423380308135336276614282806444486645238749&#x27;</span></span><br><span class="line">n7 = <span class="string">&#x27;30358907296290491560440772390713810515859307960866&#x27;</span></span><br><span class="line">n8 = <span class="string">&#x27;70172427121883998797908792274921901699720888093776&#x27;</span></span><br><span class="line">n9 = <span class="string">&#x27;65727333001053367881220235421809751254540594752243&#x27;</span></span><br><span class="line">n10 = <span class="string">&#x27;52584907711670556013604839586446706324415722155397&#x27;</span></span><br><span class="line">n11 = <span class="string">&#x27;53697817977846174064955149290862569321978468622482&#x27;</span></span><br><span class="line">n12 = <span class="string">&#x27;83972241375657056057490261407972968652414535100474&#x27;</span></span><br><span class="line">n13 = <span class="string">&#x27;82166370484403199890008895243450658541227588666881&#x27;</span></span><br><span class="line">n14 = <span class="string">&#x27;16427171479924442928230863465674813919123162824586&#x27;</span></span><br><span class="line">n15 = <span class="string">&#x27;17866458359124566529476545682848912883142607690042&#x27;</span></span><br><span class="line">n16 = <span class="string">&#x27;24219022671055626321111109370544217506941658960408&#x27;</span></span><br><span class="line">n17 = <span class="string">&#x27;07198403850962455444362981230987879927244284909188&#x27;</span></span><br><span class="line">n18 = <span class="string">&#x27;84580156166097919133875499200524063689912560717606&#x27;</span></span><br><span class="line">n19 = <span class="string">&#x27;05886116467109405077541002256983155200055935729725&#x27;</span></span><br><span class="line">n20 = <span class="string">&#x27;71636269561882670428252483600823257530420752963450&#x27;</span></span><br><span class="line">n = n1 + n2 + n3 + n4 + n5 + n6 + n7 + n8 + n9 + n10 + n11 + n12 + n13 + n14 + n15 + n16 + n17 + n18 + n19 + n20</span><br><span class="line">lst = []  <span class="comment">#用来存放13位数字之积的列表</span></span><br><span class="line">p = <span class="number">1</span>  <span class="comment">#初始化每个13位数字之积</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000</span>-<span class="number">12</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">13</span>):</span><br><span class="line">        p = p * <span class="built_in">int</span>(n[i+j])</span><br><span class="line">    lst.append(p)</span><br><span class="line">    p = <span class="number">1</span>  <span class="comment">#计算完每一组‘13位数字之积’之后，重置p为1</span></span><br><span class="line">print(<span class="built_in">max</span>(lst))</span><br></pre></td></tr></table></figure>
+
+<p><strong>Answer：23514624000</strong></p>
+<hr>
+<h2 id="9、Special-Pythagorean-triplet"><a href="#9、Special-Pythagorean-triplet" class="headerlink" title="9、Special Pythagorean triplet"></a>9、Special Pythagorean triplet</h2><p>A Pythagorean triplet is a set of three natural numbers, a &lt; b &lt; c, for which,</p>
+<p><code>a^2 + b^2 = c^2</code></p>
+<p>For example, <code>3^2 + 4^2 = 9 + 16 = 25 = 5^2</code>.</p>
+<p>There exists exactly one Pythagorean triplet for which <code>a + b + c = 1000</code>.<br>Find the product <em>abc</em>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> a <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">334</span>):</span><br><span class="line">    <span class="keyword">for</span> b <span class="keyword">in</span> <span class="built_in">range</span>(a, <span class="number">500</span>):</span><br><span class="line">        c = <span class="number">1000</span> - a - b</span><br><span class="line">        <span class="keyword">if</span> c ** <span class="number">2</span> == a ** <span class="number">2</span> + b ** <span class="number">2</span>:</span><br><span class="line">            print(a, b, c, a * b * c)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Answer：31875000</strong></p>
+<hr>
+<h2 id="10、Summation-of-primes"><a href="#10、Summation-of-primes" class="headerlink" title="10、Summation of primes"></a>10、Summation of primes</h2><p>The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.</p>
+<p>Find the sum of all the primes below two million.\</p>
+<p><strong>中文大意：求2000000以内的质数和</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">primeQ</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>,<span class="built_in">int</span>(math.sqrt(n)+<span class="number">1</span>)):</span><br><span class="line">        <span class="keyword">if</span> n % i == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">sum</span> = <span class="number">2</span></span><br><span class="line">limit = <span class="number">2000000</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span> (<span class="number">3</span>,limit,<span class="number">2</span>):</span><br><span class="line">    <span class="keyword">if</span> primeQ(i):</span><br><span class="line">        <span class="built_in">sum</span> = <span class="built_in">sum</span> + i</span><br><span class="line">print(<span class="built_in">sum</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>可以直接计算，循环步长为2，偶数不进行计算</p>
+</blockquote>
+<p><strong>Answer：142913828922</strong></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%AC%A7%E6%8B%89%E8%AE%A1%E5%88%92/" rel="tag"># 欧拉计划</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/03/27/Java%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98/" rel="prev" title="Java飞机大战">
+      <i class="fa fa-chevron-left"></i> Java飞机大战
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/03/30/%E6%AC%A7%E6%8B%89%E8%AE%A1%E5%88%9211-20/" rel="next" title="欧拉计划11-20">
+      欧拉计划11-20 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E8%AE%A1%E5%88%921-10"><span class="nav-text">欧拉计划1-10</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81Multiples-of-3-and-5"><span class="nav-text">1、Multiples of 3 and 5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81Even-Fibonacci-numbers"><span class="nav-text">2、Even Fibonacci numbers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81Largest-prime-factor"><span class="nav-text">3、Largest prime factor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81Largest-palindrome-product"><span class="nav-text">4、Largest palindrome product</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81Smallest-multiple"><span class="nav-text">5、Smallest multiple</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6%E3%80%81Sum-square-difference"><span class="nav-text">6、Sum square difference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7%E3%80%8110001st-prime"><span class="nav-text">7、10001st prime</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8%E3%80%81Largest-product-in-a-series"><span class="nav-text">8、Largest product in a series</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9%E3%80%81Special-Pythagorean-triplet"><span class="nav-text">9、Special Pythagorean triplet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10%E3%80%81Summation-of-primes"><span class="nav-text">10、Summation of primes</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="康慧春"
+      src="/images/aaa.gif">
+  <p class="site-author-name" itemprop="name">康慧春</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/2738132159" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;2738132159" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/5880774808" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;5880774808" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">康慧春</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+<div class="powered-by">
+  <i class="fa fa-user-md"></i>
+  <span id="busuanzi_container_site_uv">
+    本站总访客数:<span id="busuanzi_value_site_uv"></span>&nbsp;&nbsp;| 
+  </span>
+  <span id="busuanzi_container_site_pv">
+      &nbsp;本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+  </div>
+  </div>
+
+  <script>
+      var now = new Date(); 
+      function createtime() { 
+          var grt= new Date("03/12/2019 12:00:00");//此处修改你的建站时间或者网站上线时间 
+          now.setTime(now.getTime()+250); 
+          days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+          if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+          mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+          snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+          document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+          document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+      } 
+  setInterval("createtime()",250);
+  </script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="//cdn.jsdelivr.net/gh/theme-next/theme-next-three@1/three.min.js"></script>
+    <script defer src="//cdn.jsdelivr.net/gh/theme-next/theme-next-three@latest/canvas_lines.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'FqVYHd2w8d1GR2oiPezc90bN-gzGzoHsz',
+      appKey     : 'v5NPCMaETpbIGgAWtljExUU9',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

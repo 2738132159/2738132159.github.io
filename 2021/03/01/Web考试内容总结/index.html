@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-big-counter.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一、大题串讲表单设计1234567891011121314151617181920212223&lt;html&gt;    &lt;head&gt;        &lt;title&gt;*****&lt;&#x2F;title&gt;    &lt;&#x2F;head&gt;    &lt;body&gt;        &lt;form action&#x3D;&quot;&quot; method&#x3D;&quot;&amp;q">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web考试内容总结">
+<meta property="og:url" content="http://example.com/2021/03/01/Web%E8%80%83%E8%AF%95%E5%86%85%E5%AE%B9%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="苦行僧">
+<meta property="og:description" content="一、大题串讲表单设计1234567891011121314151617181920212223&lt;html&gt;    &lt;head&gt;        &lt;title&gt;*****&lt;&#x2F;title&gt;    &lt;&#x2F;head&gt;    &lt;body&gt;        &lt;form action&#x3D;&quot;&quot; method&#x3D;&quot;&amp;q">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-01T09:37:42.000Z">
+<meta property="article:modified_time" content="2021-04-03T08:37:10.464Z">
+<meta property="article:author" content="康慧春">
+<meta property="article:tag" content="考试笔记">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2021/03/01/Web%E8%80%83%E8%AF%95%E5%86%85%E5%AE%B9%E6%80%BB%E7%BB%93/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Web考试内容总结 | 苦行僧</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+<a target="_blank" rel="noopener" href="https://github.com/2738132159" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">苦行僧</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/01/Web%E8%80%83%E8%AF%95%E5%86%85%E5%AE%B9%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aaa.gif">
+      <meta itemprop="name" content="康慧春">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="苦行僧">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Web考试内容总结
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-01 17:37:42" itemprop="dateCreated datePublished" datetime="2021-03-01T17:37:42+08:00">2021-03-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-03 16:37:10" itemprop="dateModified" datetime="2021-04-03T16:37:10+08:00">2021-04-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="热度" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/03/01/Web%E8%80%83%E8%AF%95%E5%86%85%E5%AE%B9%E6%80%BB%E7%BB%93/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/01/Web%E8%80%83%E8%AF%95%E5%86%85%E5%AE%B9%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="一、大题串讲"><a href="#一、大题串讲" class="headerlink" title="一、大题串讲"></a>一、大题串讲</h1><h2 id="表单设计"><a href="#表单设计" class="headerlink" title="表单设计"></a>表单设计</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>*****<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;&quot;</span> <span class="attr">method</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filedset</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">legend</span>&gt;</span>信息表<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">                姓名：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">maxlength</span>=<span class="string">&quot;&quot;</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">                年龄：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">pattern</span>=<span class="string">&quot;^[1-9]?[0-9]$&quot;</span>/&gt;</span></span><br><span class="line">                用户名：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">pattern</span>=<span class="string">&quot;^[a-zA-Z0-9_\-]&#123;4,16&#125;$&quot;</span>/&gt;</span></span><br><span class="line">                性别：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;性别&quot;</span> <span class="attr">checked</span>=<span class="string">&quot;checked&quot;</span> <span class="attr">value</span>=<span class="string">&quot;女&quot;</span>/&gt;</span>女</span><br><span class="line">			 		<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;性别&quot;</span> <span class="attr">value</span>=<span class="string">&quot;男&quot;</span>/&gt;</span>男<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">                学历：<span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span> <span class="attr">select</span>=<span class="string">&quot;select&quot;</span>&gt;</span>本科<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span> <span class="attr">select</span>=<span class="string">&quot;select&quot;</span>&gt;</span>大专<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">filedset</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;提交&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;reset&quot;</span> <span class="attr">value</span>=<span class="string">&quot;重置&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h2 id="日期对象"><a href="#日期对象" class="headerlink" title="日期对象"></a>日期对象</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>计时器<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> timeResult = <span class="number">0</span></span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> timer</span></span><br><span class="line"><span class="javascript">        	<span class="function"><span class="keyword">function</span> <span class="title">starTime</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">       			<span class="built_in">document</span>.txtForm.txt.value = timeResult;</span></span><br><span class="line">        		timeResult = timeResult + 1</span><br><span class="line"><span class="javascript">            	timer = <span class="built_in">setTimeout</span>(<span class="string">&quot;starTime()&quot;</span>,<span class="number">1000</span>)</span></span><br><span class="line">        	&#125;</span><br><span class="line"><span class="javascript">            <span class="function"><span class="keyword">function</span> <span class="title">endTime</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line">                clearTime(timer)</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;开始&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;starTime()&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;text&quot;</span>/&gt;</span>秒<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;停止&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;endTime()&quot;</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;清零&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;clearTime()&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="二、程序阅读"><a href="#二、程序阅读" class="headerlink" title="二、程序阅读"></a>二、程序阅读</h1><h2 id="1、表格阅读"><a href="#1、表格阅读" class="headerlink" title="1、表格阅读"></a>1、表格阅读</h2><table>
+<thead>
+<tr>
+<th align="center">table</th>
+<th align="center">创建表格</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>caption</strong></td>
+<td align="center"><strong>标题</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>tr</strong></td>
+<td align="center"><strong>行</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>th</strong></td>
+<td align="center"><strong>表头单元格</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>td</strong></td>
+<td align="center"><strong>数据单元格</strong></td>
+</tr>
+</tbody></table>
+<blockquote>
+<h3 id="表格边框的属性"><a href="#表格边框的属性" class="headerlink" title="表格边框的属性"></a>表格边框的属性</h3></blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">above</th>
+<th align="center">上边框</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">below</td>
+<td align="center">下边框</td>
+</tr>
+<tr>
+<td align="center">hsides</td>
+<td align="center">上下</td>
+</tr>
+<tr>
+<td align="center">vsides</td>
+<td align="center">左右</td>
+</tr>
+<tr>
+<td align="center">lhs</td>
+<td align="center">左边框</td>
+</tr>
+<tr>
+<td align="center">rhs</td>
+<td align="center">右边框</td>
+</tr>
+<tr>
+<td align="center">border</td>
+<td align="center">上下左右</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">不显示</td>
+</tr>
+<tr>
+<td align="center">all</td>
+<td align="center">显示所有内部边框</td>
+</tr>
+<tr>
+<td align="center">none</td>
+<td align="center">不显示内部边框</td>
+</tr>
+<tr>
+<td align="center">rows</td>
+<td align="center">仅显示行边框</td>
+</tr>
+<tr>
+<td align="center">cols</td>
+<td align="center">仅显示列边框</td>
+</tr>
+<tr>
+<td align="center">groups</td>
+<td align="center">显示介于行列周边框</td>
+</tr>
+</tbody></table>
+<blockquote>
+<h3 id="单元格的合并"><a href="#单元格的合并" class="headerlink" title="单元格的合并"></a>单元格的合并</h3></blockquote>
+<ul>
+<li>colspan：水平单元格合并（向右）</li>
+<li>rowspan：垂直单元格合并（向下）</li>
+</ul>
+<h2 id="2、列表阅读"><a href="#2、列表阅读" class="headerlink" title="2、列表阅读"></a>2、列表阅读</h2><p>oL有序，uL无序</p>
+<h2 id="3、CSS样式的注释"><a href="#3、CSS样式的注释" class="headerlink" title="3、CSS样式的注释"></a>3、CSS样式的注释</h2><p>见样式属性</p>
+<h2 id="4、补全代码（循环）"><a href="#4、补全代码（循环）" class="headerlink" title="4、补全代码（循环）"></a>4、补全代码（循环）</h2><ul>
+<li>while</li>
+<li>do…while</li>
+<li>for</li>
+</ul>
+<h1 id="三、小题笔计"><a href="#三、小题笔计" class="headerlink" title="三、小题笔计"></a>三、小题笔计</h1><ol>
+<li><p>HTML5 的全局属性中<strong>contenteditable</strong>用于（  <strong>规定元素内容是否是可编辑的</strong>）</p>
+</li>
+<li><p>在HTML5中，spellcheck是<strong>全局属性</strong></p>
+</li>
+<li><p>为了使得元素可拖动，可以把<strong>draggable</strong>属性设置为ture</p>
+</li>
+<li><p>无序表中设置type属性：<strong>disc实心圆，circle空心圆，square实心方块</strong></p>
+</li>
+<li><p>HTML所支持的<strong>视频格式</strong>：WebM，mp4，Ogg</p>
+</li>
+<li><p><strong>首行缩进</strong>：text-indent</p>
+</li>
+<li><p>span标签用于组合行内元素</p>
+</li>
+<li><p>将元素转换为行内块元素的方法是对其应用display:inline-block;样式</p>
+</li>
+<li><p>将字符串s中的所有字母变为<strong>小写字母</strong>的方法是<strong>toLowerCase</strong></p>
+</li>
+<li><p>indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置</p>
+</li>
+<li><p>window的<strong>prompt（）</strong>可以弹出带文本输入框的对话框</p>
+</li>
+<li><p>open()方法的<strong>scrollbars（）</strong>可以设置是否显示<strong>滚动条</strong></p>
+</li>
+<li><p>CSS中position: relative表示（  相对于它在原文档流的位置进行定位 ）</p>
+</li>
+<li><p>open()方法的toolbar参数可以设置是否显示工具栏</p>
+</li>
+<li><p>计时器设置</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>简易计时器<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> c=<span class="number">0</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> t</span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">timedCount</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line">            dacument.txtForm.txt.value=c;</span><br><span class="line">            c=c+1</span><br><span class="line"><span class="javascript">            t=<span class="built_in">setTimeout</span>(<span class="string">&quot;timedCount()&quot;</span>,<span class="number">1000</span>)</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">stopCount</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">clearTimeout</span>(t)</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">&quot;txtForm&quot;</span> <span class="attr">name</span>=<span class="string">&quot;txtForm&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;txt&quot;</span> <span class="attr">id</span>=<span class="string">&quot;txt&quot;</span>&gt;</span>秒<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;开始&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;timeCount()&quot;</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;暂停&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;stopCount()&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>日期的简单计算</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>日期的应用<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>();</span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> nationlDay = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2019</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);</span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> msel = nationlDay - now;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> year = now.getFullYear();</span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> month = now.getMonth();</span></span><br><span class="line">            month = month+1;</span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> day =now,getDate();</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.write(<span class="string">&quot;当前的日期为：&quot;</span>year+<span class="string">&quot;年&quot;</span>+month+<span class="string">&quot;月&quot;</span>+day+<span class="string">&quot;日&quot;</span>&lt;br/&gt;);</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.write(<span class="string">&quot;距离元旦还有：&quot;</span>+<span class="built_in">parseInt</span>(msel/(<span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span>*<span class="number">1000</span>))+<span class="string">&quot;天&quot;</span>);</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p><strong>article标签</strong>用于表示文档、页面或应用程序中独立的、完整的、可以独自被外部引用的内容</p>
+</li>
+<li><p>menu：<strong>菜单命令的集合，用于创建工具栏，上下文和弹出菜单</strong>。</p>
+</li>
+<li><p>.在&lt; details &gt;元素属性中，用于设置元素所对应的项目ID号的是（ <strong>subject</strong> ）。</p>
+</li>
+<li><p>下列&lt; meter &gt;元素属性中，哪一项是用于设置规定度量的优化值？（ <strong>optimum</strong>  ）。</p>
+</li>
+<li><p>在HTML文本层次语义元素中，用于对参考文献的引用进行定义的是（ <strong>cite</strong>）。</p>
+</li>
+<li><p>下列哪些选项属于HTML5为了页面的排版需要而提供的语义分组元素？<br><strong>blockquote：定义一个源的块引用<br>figure：规定独立的流内容<br>pre 元素可定义预格式化的文本</strong></p>
+</li>
+<li><p>四个全局属性：<br><strong>hidden属性：设置该元素，则规定的元素仍未或者不再相关。浏览器不应显示已经规定hidden属性的元素。<br>spellcheck属性：规定是否对元素进行拼写和语法检查。<br>contenteditable属性：规定是否允许用户编辑内容。<br>contextmenu属性：规定元素的上下文菜单</strong></p>
+</li>
+<li><p>.legend标签为fieldset边框添加相关的标题。</p>
+</li>
+<li><p><strong>内联式</strong>是通过标记的style属性，直接把CSS样式添加到HTML的标签中，作为属性存在<br><strong>内嵌式</strong>是将CSS样式代码添加到HTML文档的head头部标签中，并用style标签进行声明。内嵌式只适用于单一网页设置单独的CSS样式<br><strong>链入式</strong>是将所有的样式放在一个或多个以.css为扩展名的外部样式表文件中，通过link标记将外部样式表文件链接到HTML文档中<br><strong>导入式</strong>与链入外部CSS基本相同，都是要创建一个单独的外部CSS文件，再引入到HTML文档中。导入式采用@import来导入外部CSS文件</p>
+</li>
+<li><p>CSS样式的4种特性分别是<strong>继承性、特殊性、层叠性和重要性。</strong></p>
+</li>
+<li><p><strong>dashed、虚线   solid、实线   dotted 点线</strong></p>
+</li>
+<li><p>布局主要分为固定式布局、流式布局、响应式布局三种形式的布局方式</p>
+<blockquote>
+<p>固定式布局是指利用固定的大小宽度去布局网页的尺寸<br>流式网页布局可以根据浏览器的宽度和屏幕的大小自动调整效果<br>响应式网页布局是一种糅合了流式布局，再搭配媒体查询技术使用的网页布局方式</p>
+</blockquote>
+</li>
+<li><p><strong>CSS盒主要是由margin（外边距）、border（边框）、padding（内边距）和content（内容）四个部分组成，此外，还有高度和宽度两个辅助属性。</strong></p>
+</li>
+<li><p><strong>内容区拥有width、height和overflow三个属性，其中overflow属性用来指定溢出内容的处理方式，属性取值主要有visible、hidden、scroll、auto四种</strong></p>
+</li>
+<li><p><strong>CSS中清楚浮动层对文本的影响：clear<br>both：清除左右两边的浮动<br>left和right清除一个方向的<br>none是默认值<br>inherit：从父元素继承clear的值</strong></p>
+</li>
+<li><p><strong>CSS中的绝对定位：position<br>absolute：绝对定位<br>relative：相对定位<br>fixed：固定定位，定位相对于浏览器窗口<br>static：默认值，无特殊定位</strong></p>
+</li>
+<li><p>如果要使用多个DIV并列排序，应使用：<strong>float</strong></p>
+</li>
+<li><p>在多列布局设置中如果没有设置columns-rule属性，则默认其属性取值为：<strong>medium none black。</strong></p>
+</li>
+<li><p><strong>title用于设置鼠标悬停在图像上时的提示文字</strong></p>
+</li>
+<li><p>在HTML中，new不是链接的目标窗口属性，<strong>self，blank，top是</strong></p>
+</li>
+<li><p>CSS中，如果要清除浮动层对文本的影响，下列说法正确的是：<br><strong>为放置文本的标签增加clear属性，并设置其属性为both</strong></p>
+</li>
+<li><p>若设置弹性盒中子元素纵向的对齐方式，应选择（  <strong>align-items</strong>   ）属性</p>
+</li>
+<li><p><strong>order属性用于定义弹性盒子元素的排列顺序</strong>。</p>
+</li>
+<li><p>若对网页元素进行缩放变换，可以采用（   <strong>transform</strong>  ）属性进行恰当的设置来实现。</p>
+</li>
+<li><p>可将网页元素做旋转变换的是:rotate()</p>
+</li>
+<li><p><strong>启动事件的两种绑定方式为静态绑定和动态绑定。</strong></p>
+</li>
+<li><p>window的哪个方法可以弹出带文本输入框的对话框？（  <strong>prompt</strong>   ）。</p>
+</li>
+<li><p><strong>JavaScript的文档对象模型是树型结构的。</strong></p>
+</li>
+<li><p><strong>属性referrer可返回载入当前文档的URL。</strong></p>
+</li>
+<li><p>CSS中用<strong>于首行缩进的是indent</strong></p>
+</li>
+<li><p><strong>将元素转换为行内块元素的方法是对其应用display :inline-block;样式</strong></p>
+</li>
+<li><p><strong>indexof 返回某个指定的字符串值在字符串中首次出现的位置。</strong></p>
+</li>
+<li><p>在link属性中，引用外部文档的类型用type属性表示</p>
+</li>
+<li><p><strong>meta可重复出现在head头部标记中</strong></p>
+</li>
+<li><p>创建一个位于文档内部位置的链接的代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#NAME&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在新窗口中打开网页界面：_black</p>
+</li>
+<li><p>在details中，设置元素对应id号的是subject</p>
+</li>
+<li><p>meter中，设置规定度量的优化值是<strong>optimum</strong></p>
+</li>
+<li><p>html为了页面的排班提供了哪些语义分组元素：blockquote figure  pre</p>
+</li>
+<li><p>video中<strong>loop</strong>属性可以使媒体文件循环播放</p>
+</li>
+<li><p>CSS中<strong>position ：fixed</strong>表示相对于浏览器窗口进行定位</p>
+</li>
+<li><p>定义<strong>盒模型外间距</strong>时可以取负值</p>
+</li>
+<li><p>将弹性盒子中的子元素按正向从左到右横排的代码为：flex-direction :row</p>
+</li>
+<li><p>弹性子元素的样式代码“ justify-content: space-between”的含义是:子元素位于各行之间留有空隙的容器内</p>
+</li>
+<li><p>若设置弹性盒中子元素纵向的对齐方式，应选择（  <strong>align-items</strong>   ）属性</p>
+</li>
+<li><p>order属性用于定义弹性盒子元素的排列顺序</p>
+</li>
+<li><p> 若对网页元素进行<strong>缩放变换</strong>，可以采用（ <strong>transform</strong>  ）属性进行恰当的设置来实现。</p>
+</li>
+<li><p>可将网页元素做<strong>旋转变换</strong>的是（  <strong>rotate</strong> ）</p>
+</li>
+<li><p>下列属性取值中，可作为过渡属性的速度类型设置的是（ <strong>linear,ease</strong>   )。</p>
+</li>
+<li><p><strong>JavaScript的作用</strong>有（ABCD）。</p>
+<p>A、动态改变网页内容</p>
+<p>B、动态改变网页外观</p>
+<p>C、验证表单数据</p>
+<p>D、响应事件</p>
+</li>
+<li><p>在HTML5中<strong>使用JavaScript有两种方法</strong>，分别是内嵌式和外链式</p>
+</li>
+<li><p>在字符串对象中，将指定的字符串<strong>替换为新字符串</strong>的方法是replace</p>
+</li>
+<li><p><strong>浏览器对象不属于内置对象</strong></p>
+</li>
+<li><p><strong>字符串对象的属性</strong>包括（ABC）</p>
+<p>A、constructor      B、length</p>
+<p>C、prototype       D、PI</p>
+</li>
+<li><p>在JavaScript中对象分为<strong>内置对象、宿主对象和自定义对象</strong>三种。</p>
+</li>
+<li><p>返回某数四舍五入之后保留x位小数的方法是toFixed</p>
+</li>
+<li><p>floor小于等于 x，且与 x 最接近的整数。</p>
+</li>
+<li><p>toLocaleDateString() 方法可根据本地时间把 Date 对象的日期部分转换为字符串，并返回结果</p>
+</li>
+<li><p>A、shift()删除第一个元素，返回第一个元素</p>
+<p>B、unshift(元素1,元素2,…)添加元素至数组开始处</p>
+<p>C、sort()排序数组</p>
+</li>
+<li><p>在HTML文档对象模型中，history对象的（ forward）用于加载历史列表中的下一个URL页面</p>
+</li>
+<li><p>在JavaScript浏览器对象模型中，window对象的（ status）属性用来指定浏览器状态栏中显示的临时消息</p>
+</li>
+<li><p>window对象是所有页面内容的根对象，Document对象包含form对象</p>
+</li>
+<li><p>JAVASCRIPT的onSubmit事件的作用是：当用户提交一个表单时，需要执行的 JAVASCRIPT 事件</p>
+</li>
+<li><p>A、弹出警告信息用a l e r t(信息字串)</p>
+<p>B、显示确认信息对话框用confirm(信息字串)</p>
+<p>C、显示提示信息，并提供可输入的字段用prompt(提示字串[，默认值])</p>
+<p>D、将焦点移到该窗口，是用focus()</p>
+<p>E、进入浏览器设置的主页，可以使用home()</p>
+</li>
+<li><p>属性referrer可返回载入当前文档的URL</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%80%83%E8%AF%95%E7%AC%94%E8%AE%B0/" rel="tag"># 考试笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/02/22/Web%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="prev" title="Web基础知识点">
+      <i class="fa fa-chevron-left"></i> Web基础知识点
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/03/18/%E5%9B%BE%E7%89%87%E6%B5%8B%E8%AF%95/" rel="next" title="图片测试">
+      图片测试 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%A4%A7%E9%A2%98%E4%B8%B2%E8%AE%B2"><span class="nav-text">一、大题串讲</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E5%8D%95%E8%AE%BE%E8%AE%A1"><span class="nav-text">表单设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E6%9C%9F%E5%AF%B9%E8%B1%A1"><span class="nav-text">日期对象</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%A8%8B%E5%BA%8F%E9%98%85%E8%AF%BB"><span class="nav-text">二、程序阅读</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E8%A1%A8%E6%A0%BC%E9%98%85%E8%AF%BB"><span class="nav-text">1、表格阅读</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E6%A0%BC%E8%BE%B9%E6%A1%86%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-text">表格边框的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%A0%BC%E7%9A%84%E5%90%88%E5%B9%B6"><span class="nav-text">单元格的合并</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E5%88%97%E8%A1%A8%E9%98%85%E8%AF%BB"><span class="nav-text">2、列表阅读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81CSS%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%B3%A8%E9%87%8A"><span class="nav-text">3、CSS样式的注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E8%A1%A5%E5%85%A8%E4%BB%A3%E7%A0%81%EF%BC%88%E5%BE%AA%E7%8E%AF%EF%BC%89"><span class="nav-text">4、补全代码（循环）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%B0%8F%E9%A2%98%E7%AC%94%E8%AE%A1"><span class="nav-text">三、小题笔计</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="康慧春"
+      src="/images/aaa.gif">
+  <p class="site-author-name" itemprop="name">康慧春</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/2738132159" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;2738132159" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/5880774808" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;5880774808" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">康慧春</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+<div class="powered-by">
+  <i class="fa fa-user-md"></i>
+  <span id="busuanzi_container_site_uv">
+    本站总访客数:<span id="busuanzi_value_site_uv"></span>&nbsp;&nbsp;| 
+  </span>
+  <span id="busuanzi_container_site_pv">
+      &nbsp;本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+  </div>
+  </div>
+
+  <script>
+      var now = new Date(); 
+      function createtime() { 
+          var grt= new Date("03/12/2019 12:00:00");//此处修改你的建站时间或者网站上线时间 
+          now.setTime(now.getTime()+250); 
+          days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+          if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+          mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+          snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+          document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+          document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+      } 
+  setInterval("createtime()",250);
+  </script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="//cdn.jsdelivr.net/gh/theme-next/theme-next-three@1/three.min.js"></script>
+    <script defer src="//cdn.jsdelivr.net/gh/theme-next/theme-next-three@latest/canvas_lines.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'FqVYHd2w8d1GR2oiPezc90bN-gzGzoHsz',
+      appKey     : 'v5NPCMaETpbIGgAWtljExUU9',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

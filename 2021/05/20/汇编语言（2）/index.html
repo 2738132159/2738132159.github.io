@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-big-counter.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前言建议学习了至少一门高级语言，再进行汇编的学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="汇编语言（一）">
+<meta property="og:url" content="http://example.com/2021/05/20/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%EF%BC%882%EF%BC%89/index.html">
+<meta property="og:site_name" content="苦行僧">
+<meta property="og:description" content="前言建议学习了至少一门高级语言，再进行汇编的学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/05/20/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%EF%BC%882%EF%BC%89/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://example.com/2021/05/20/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%EF%BC%882%EF%BC%89/ASCII.png">
+<meta property="og:image" content="http://example.com/2021/05/20/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%EF%BC%882%EF%BC%89/%E6%AE%B5%E5%AF%84%E5%AD%98%E5%99%A8%E7%89%A9%E7%90%86%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://example.com/2021/05/20/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%EF%BC%882%EF%BC%89/%E6%95%B0%E6%8D%AE%E5%90%88%E6%B3%95%E6%B5%81%E9%80%9A%E5%9B%BE.png">
+<meta property="article:published_time" content="2021-05-20T12:09:25.000Z">
+<meta property="article:modified_time" content="2021-05-20T12:13:14.467Z">
+<meta property="article:author" content="康慧春">
+<meta property="article:tag" content="考试笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/05/20/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%EF%BC%882%EF%BC%89/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%93%E6%9E%84.png">
+
+<link rel="canonical" href="http://example.com/2021/05/20/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%EF%BC%882%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>汇编语言（一） | 苦行僧</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+<a target="_blank" rel="noopener" href="https://github.com/2738132159" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">苦行僧</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/20/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%EF%BC%882%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aaa.gif">
+      <meta itemprop="name" content="康慧春">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="苦行僧">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          汇编语言（一）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-20 20:09:25 / 修改时间：20:13:14" itemprop="dateCreated datePublished" datetime="2021-05-20T20:09:25+08:00">2021-05-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B1%87%E7%BC%96/" itemprop="url" rel="index"><span itemprop="name">汇编</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="热度" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">热度：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/05/20/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%EF%BC%882%EF%BC%89/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/20/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%EF%BC%882%EF%BC%89/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>建议学习了至少一门高级语言，再进行汇编的学习</p>
+<span id="more"></span>
+
+<h2 id="计算机的基本概述"><a href="#计算机的基本概述" class="headerlink" title="计算机的基本概述"></a>计算机的基本概述</h2><h3 id="计算机的硬件"><a href="#计算机的硬件" class="headerlink" title="计算机的硬件"></a>计算机的硬件</h3><h4 id="处理器"><a href="#处理器" class="headerlink" title="处理器"></a>处理器</h4><p>处理器也叫作CPU，主要包含<strong>运算器</strong>、<strong>控制器</strong>以及<strong>高速存储单元（寄存器）</strong>。</p>
+<h4 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h4><p>用于存放程序所涉及的数据。存储器的内容并不会因为被读取而消失，可以重复读取。只有写入新的信息后，才会修改原来的信息。</p>
+<p>一定要将存储器和硬盘分开，硬盘属于外部设备。</p>
+<p>按照读写能力，存储器分为<strong>随机存取存储器（RAM）</strong>、<strong>只读存储器（ROM）</strong>。常用的内存条就是RAM。</p>
+<h4 id="外部设备"><a href="#外部设备" class="headerlink" title="外部设备"></a>外部设备</h4><p>除了CPU、存储器，其余一切的设备都是外部设备。通过I/O接口与外界设备进行连接。</p>
+<h4 id="系统总线"><a href="#系统总线" class="headerlink" title="系统总线"></a>系统总线</h4><p>用于各个设备之间的信息传递。</p>
+<p><img src="%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%93%E6%9E%84.png" alt="计算机结构"></p>
+<h3 id="计算机的程序语言设计"><a href="#计算机的程序语言设计" class="headerlink" title="计算机的程序语言设计"></a>计算机的程序语言设计</h3><h4 id="机器语言"><a href="#机器语言" class="headerlink" title="机器语言"></a>机器语言</h4><p>由计算机能够识别的0和1组成的指令代码。一条指令由<strong>操作码</strong>和<strong>操作数</strong>构成。</p>
+<p>难以理解、极易出错、难以发现错误</p>
+<h4 id="汇编语言"><a href="#汇编语言" class="headerlink" title="汇编语言"></a>汇编语言</h4><p>采用助记符，与机器语言无本质区别。需要翻译成机器语言才能执行。</p>
+<p>比机器语言更容易理解和掌握，也容易调试和维护。</p>
+<h4 id="高级语言"><a href="#高级语言" class="headerlink" title="高级语言"></a>高级语言</h4><p>不能直接运行，符合人们的语言习惯。</p>
+<h2 id="数据的表示"><a href="#数据的表示" class="headerlink" title="数据的表示"></a>数据的表示</h2><h3 id="数制"><a href="#数制" class="headerlink" title="数制"></a>数制</h3><p><strong>1位16进制数等于4位2进制数</strong></p>
+<p><strong>16进制数，末尾接一个H</strong>，来表示。例如10H就是16进制的10，但是10就是10进制的10。</p>
+<p><strong>2进制数，末尾接一个B，来表示。</strong></p>
+<h3 id="数值的编码"><a href="#数值的编码" class="headerlink" title="数值的编码"></a>数值的编码</h3><p>请注意，计算机只是认识0和1，在它的世界里面没有正负数，没有小数，乃至没有正数。所有01代码对应的数字都是人为规定的。这里一定要想清楚。你可以这样子规定，别人也可以那样子规定，但是为了代码的方便与交流的方便，大家才统一了以下的一些标准。</p>
+<p>比如 11 11 11 11，他可以是无符号整数255，也可以是有符号整数-128，也可以是补码表示-1，也可以是ASCII中的一个字符。它究竟是什么是程序员说了算。</p>
+<h4 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h4><p>整数分为两部分，有符号与无符号。</p>
+<table>
+<thead>
+<tr>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+<th align="center">7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">A</td>
+<td align="center">B</td>
+<td align="center">C</td>
+<td align="center">D</td>
+<td align="center">E</td>
+<td align="center">F</td>
+<td align="center">G</td>
+<td align="center">H</td>
+</tr>
+</tbody></table>
+<p>按照一个8位数（C语言中的char类型）为例。</p>
+<p>那么无符号数就是<br>$$<br>A \times 2^7 + B \times 2^6  + C \times 2^5  + D \times 2^4  + E \times 2^3  + F \times 2^2  + G \times 2^1  + H \times 2^0<br>$$<br>有符号数就是<br>$$</p>
+<ul>
+<li>A \times 2^7 + B \times 2^6  + C \times 2^5  + D \times 2^4  + E \times 2^3  + F \times 2^2  + G \times 2^1  + H \times 2^0<br>$$<br>你会发现其实就是<strong>A多了一个负号！</strong></li>
+</ul>
+<p>下面稍微举几个数字</p>
+<table>
+<thead>
+<tr>
+<th align="center">8位二进制</th>
+<th align="center">有符号十进制</th>
+<th align="center">无符号十进制</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">00 00 00 00</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">00 00 00 01</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">01 11 11 11</td>
+<td align="center">127</td>
+<td align="center">127</td>
+</tr>
+<tr>
+<td align="center">10 00 00 00</td>
+<td align="center">-128</td>
+<td align="center">129</td>
+</tr>
+<tr>
+<td align="center">11 11 11 11</td>
+<td align="center">-1</td>
+<td align="center">255</td>
+</tr>
+</tbody></table>
+<p>对于计算机来说，2进制数其实并没有符号。之所以有符号只是因为我们认为规定的而已。之所以这样子规定只是满足了10进制的-1(11 11 11 11)，在2进制下加1会变为0((01) 00 00 00 00)。</p>
+<h4 id="原码"><a href="#原码" class="headerlink" title="原码"></a>原码</h4><p>与上面讲的有符号数和无符号数的表示方法不同。</p>
+<p>这里我们用上述的A来表示符号，剩余数直接表示数的大小。<br>$$<br>B \times 2^6  + C \times 2^5  + D \times 2^4  + E \times 2^3  + F \times 2^2  + G \times 2^1  + H \times 2^0<br>$$<br>当A是1，就把上述数加一个符号。如果是0就不管它。不引入<br>$$</p>
+<ul>
+<li>A \times 2^7<br>$$</li>
+</ul>
+<h4 id="反码"><a href="#反码" class="headerlink" title="反码"></a>反码</h4><p>正数的反码与原码相同</p>
+<p>负数的反码，除了符号位外，其余所有位取反，0变为1，1变为0。</p>
+<table>
+<thead>
+<tr>
+<th align="center">十进制数</th>
+<th align="center">C语言符号数</th>
+<th align="center">原码</th>
+<th align="center">反码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">105</td>
+<td align="center">01 10 10 01</td>
+<td align="center"><strong>0</strong>1 10 10 01</td>
+<td align="center"><strong>0</strong>1 10 10 01</td>
+</tr>
+<tr>
+<td align="center">-105</td>
+<td align="center">10 01 01 11</td>
+<td align="center"><strong>1</strong>1 10 10 01</td>
+<td align="center"><strong>1</strong>0 01 01 10</td>
+</tr>
+</tbody></table>
+<h4 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h4><p>正数的补码同原码</p>
+<p>负数的补码是对应的反码然后<strong>加上1</strong>。也就是最上面讲的C语言符号数原理。</p>
+<table>
+<thead>
+<tr>
+<th align="center">十进制数</th>
+<th align="center">C语言符号数</th>
+<th align="center">原码</th>
+<th align="center">补码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">105</td>
+<td align="center">01 10 10 01</td>
+<td align="center"><strong>0</strong>1 10 10 01</td>
+<td align="center"><strong>0</strong>1 10 10 01</td>
+</tr>
+<tr>
+<td align="center">-105</td>
+<td align="center">10 01 01 11</td>
+<td align="center"><strong>1</strong>1 10 10 01</td>
+<td align="center"><strong>1</strong>0 01 01 11</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">十进制数</th>
+<th align="center">原码</th>
+<th align="center">反码</th>
+<th align="center">补码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">+127</td>
+<td align="center">01 11 11 11</td>
+<td align="center">01 11 11 11</td>
+<td align="center">01 11 11 11</td>
+</tr>
+<tr>
+<td align="center">+126</td>
+<td align="center">01 11 11 10</td>
+<td align="center">01 11 11 10</td>
+<td align="center">01 11 11 10</td>
+</tr>
+<tr>
+<td align="center">+2</td>
+<td align="center">00 00 00 10</td>
+<td align="center">00 00 00 10</td>
+<td align="center">00 00 00 10</td>
+</tr>
+<tr>
+<td align="center">+1</td>
+<td align="center">00 00 00 01</td>
+<td align="center">00 00 00 01</td>
+<td align="center">00 00 00 01</td>
+</tr>
+<tr>
+<td align="center">+0</td>
+<td align="center">00 00 00 00</td>
+<td align="center">00 00 00 00</td>
+<td align="center">00 00 00 00</td>
+</tr>
+<tr>
+<td align="center">-0</td>
+<td align="center">10 00 00 00</td>
+<td align="center">11 11 11 11</td>
+<td align="center">(1) 00 00 00 00</td>
+</tr>
+<tr>
+<td align="center">-1</td>
+<td align="center">10 00 00 01</td>
+<td align="center">11 11 11 10</td>
+<td align="center">11 11 11 11</td>
+</tr>
+<tr>
+<td align="center">-2</td>
+<td align="center">10 00 00 10</td>
+<td align="center">11 11 11 01</td>
+<td align="center">11 11 11 10</td>
+</tr>
+<tr>
+<td align="center">-126</td>
+<td align="center">11 11 11 10</td>
+<td align="center">10 00 00 01</td>
+<td align="center">10 00 00 10</td>
+</tr>
+<tr>
+<td align="center">-127</td>
+<td align="center">11 11 11 11</td>
+<td align="center">10 00 00 00</td>
+<td align="center">10 00 00 01</td>
+</tr>
+<tr>
+<td align="center">-128</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">10 00 00 00</td>
+</tr>
+</tbody></table>
+<h3 id="字符的编码"><a href="#字符的编码" class="headerlink" title="字符的编码"></a>字符的编码</h3><h4 id="ASCII"><a href="#ASCII" class="headerlink" title="ASCII"></a>ASCII</h4><p><img src="ASCII.png" alt="计算机结构"></p>
+<p>最上边的一个表就是常用的前127个字符。后面一个表是拓展字符。</p>
+<h4 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h4><p>能够兼容世界上所有字符，常用于网络。</p>
+<h4 id="GBK"><a href="#GBK" class="headerlink" title="GBK"></a>GBK</h4><p>简体汉字编码格式。也是常用在IDE中的。</p>
+<h2 id="8086微处理器"><a href="#8086微处理器" class="headerlink" title="8086微处理器"></a>8086微处理器</h2><p>整个汇编的学习，都会围绕着8086处理器进行。</p>
+<h3 id="8086的寄存器"><a href="#8086的寄存器" class="headerlink" title="8086的寄存器"></a>8086的寄存器</h3><h4 id="通用寄存器（缩写reg）"><a href="#通用寄存器（缩写reg）" class="headerlink" title="通用寄存器（缩写reg）"></a>通用寄存器（缩写reg）</h4><table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">含义</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">AX</td>
+<td align="center">累加器</td>
+<td align="center">使用频率最高，用于运算、传递信息等。最接近高级语言变量的寄存器</td>
+</tr>
+<tr>
+<td align="center">BX</td>
+<td align="center"><strong>基址寄存器</strong></td>
+<td align="center">用来存放储存器的地址</td>
+</tr>
+<tr>
+<td align="center">CX</td>
+<td align="center">计数器</td>
+<td align="center">用作循环次数的计数器</td>
+</tr>
+<tr>
+<td align="center">DX</td>
+<td align="center">数据寄存器</td>
+<td align="center">存放数据，在I/O指令中存放外设端口地址</td>
+</tr>
+<tr>
+<td align="center">SI</td>
+<td align="center">源<strong>变址寄存器</strong></td>
+<td align="center">指向字符串或数组源的操作数</td>
+</tr>
+<tr>
+<td align="center">DI</td>
+<td align="center">目的<strong>变址寄存器</strong></td>
+<td align="center">指向字符串或数组目的的操作数</td>
+</tr>
+<tr>
+<td align="center">BP</td>
+<td align="center"><strong>基址寄存器</strong></td>
+<td align="center">默认指向程序堆栈区域的数据，主要用于在子程序中访问通过堆栈传递的参数和局部变量</td>
+</tr>
+<tr>
+<td align="center">SP</td>
+<td align="center">堆栈寄存器</td>
+<td align="center">专门用于指向程序堆栈区域的数据，在堆栈操作的时候，会自动增加减少，以便于指向堆栈顶部</td>
+</tr>
+</tbody></table>
+<h5 id="数据寄存器"><a href="#数据寄存器" class="headerlink" title="数据寄存器"></a>数据寄存器</h5><p><strong>AX、BX、CX、DX</strong>都是16位的寄存器。也就是4位16进制数。</p>
+<p>现在不理解没有关系，现在最主要知道AX可以大概类似于高级语言变量使用就可以了。<strong>切记，上面表格的8个通用寄存器，并不是简单的8个变量。</strong>只有AX可以类似使用！所以在汇编语言需要特别节约变量。</p>
+<p>以AX为例，有16个格子，编号为0——15。在寄存器操作中经常会用到的是8位数而非是16位数。所以我们可以把AX一分为二，0——7看做一个8位寄存器叫做AL，8——15看做AH。</p>
+<p>所以这4个16位寄存器，可以分为8个8位寄存器：<strong>AL、AH、BL、BH、CL、CH、DL、DH</strong>。</p>
+<p><strong>切记，不要将AL和AX看做两个寄存器，在修改AL值的时候，AX的值也会随之变化。</strong></p>
+<h5 id="变址寄存器"><a href="#变址寄存器" class="headerlink" title="变址寄存器"></a>变址寄存器</h5><p>在上面的数据寄存器中我们很容易发现，只有很少的寄存器能够使用，那么当我们想完成高级语言的数组（字符串操作同数组）操作时，就会用到<strong>SI、DI</strong>。比如我们在C语言中，声明数组</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> ch[<span class="number">100</span>];</span><br></pre></td></tr></table></figure>
+
+<p>这里我们可以通过</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ch[n];</span><br></pre></td></tr></table></figure>
+
+<p>来操作数组，我们也可以通过</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*(ch + n);</span><br></pre></td></tr></table></figure>
+
+<p>这里的ch就是数组的地址，所以同理，在汇编语言里也可以用SI来记录数组首地址，BX来存放n的值表示偏移量。</p>
+<p>之所以要分为SI与DI。因为比如要把字符串a复制到字符串b，这里的字符串a就是数据来源，所以叫做SI、b是数据目的地，所以叫做DI。</p>
+<h5 id="指针寄存器"><a href="#指针寄存器" class="headerlink" title="指针寄存器"></a>指针寄存器</h5><p>堆栈是汇编里非常重要的东西。如果不清楚堆栈是什么的，可以百度自行学习。简单可以把堆栈概括为先进后出，后进先出。BP、SP就是指向堆栈地址的寄存器。</p>
+<p>SP会随着指令的运行而改变自身的大小，你可以理解为一个程序自带的堆栈。而BP是指向堆栈某处的指针，可以理解为一个标记点。</p>
+<h4 id="标志寄存器"><a href="#标志寄存器" class="headerlink" title="标志寄存器"></a>标志寄存器</h4><p>有且仅有一个<strong>FLAGS</strong>。这是一个16进制的寄存器，他的一些位数被标定为了特殊的意义。FLAGS将会随着指令的进行而变化，特别是<strong>运算</strong>（加减乘除）后。</p>
+<p><em>请注意，下表与我们正常书写的习惯是反过来的。书写习惯是从最高位到最低位。</em></p>
+<table>
+<thead>
+<tr>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+<th align="center">7</th>
+<th align="center">8</th>
+<th align="center">9</th>
+<th align="center">10</th>
+<th align="center">11</th>
+<th align="center">12</th>
+<th align="center">13</th>
+<th align="center">14</th>
+<th align="center">15</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">CF</td>
+<td align="center"></td>
+<td align="center">PF</td>
+<td align="center"></td>
+<td align="center">AF</td>
+<td align="center"></td>
+<td align="center">ZF</td>
+<td align="center">SF</td>
+<td align="center">TF</td>
+<td align="center">IF</td>
+<td align="center">DF</td>
+<td align="center">OF</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h5 id="状态标志"><a href="#状态标志" class="headerlink" title="状态标志"></a>状态标志</h5><h6 id="进位标志CF"><a href="#进位标志CF" class="headerlink" title="进位标志CF"></a>进位标志CF</h6><p>用于标定<strong>加减运算最高有效位的进位和借位</strong>。</p>
+<p>比如以11 11 11 11为例，这个数字再加上1。其值是[1] 00 00 00 00。因为8位寄存器，没办法表示方括号内的1。所以只能表示为00 00 00 00。但这很明显计算不对，所以为了告诉后面的代码我进位了。就将CF的值改为1。</p>
+<p>它的意义，比如进行C语言中int类型的计算，这很明显没有任何一个寄存器可以存下这个32位的数字，哪怕是16位的AX都不行。所以我们只能把它分为低地址16位和高地址16位分开相加。两次运算是完全独立的，此时如果低地址的16位加法产生了进位，就可以通过CF来判断是否有进位，以此考虑是否要将高地址16位相加结果加1。</p>
+<p>减法同理，不过此时的CF用来表示是否有被减数小于减数，产生借位。</p>
+<h6 id="奇偶标志PF"><a href="#奇偶标志PF" class="headerlink" title="奇偶标志PF"></a>奇偶标志PF</h6><p>用于标定<strong>运算结果</strong>最低字节（1字节=8位，也就是地址最低的8位）中“1”的个数是奇数还是偶数。</p>
+<p>如果其中1个个数为偶数，那么PF=1，反之PF=0。</p>
+<p>例如10 11 01 10 中有5个1，那么PF=0。再比如11 11 01 10 中有6个1，那么PF=1。</p>
+<h6 id="调整标志AF"><a href="#调整标志AF" class="headerlink" title="调整标志AF"></a>调整标志AF</h6><p>标定加减运算时<strong>最低半字节有无进位借位</strong>（也就是地址最低的4位）。</p>
+<p>例如：00 11 10 10 + 01 11 11 00 = 10 11 01 10 ，低4位 10 10 + 01 10 =  1 01 10产生进位，那么AF=1。</p>
+<h6 id="零标志ZF"><a href="#零标志ZF" class="headerlink" title="零标志ZF"></a>零标志ZF</h6><p>标定<strong>运算结果是否为0</strong>。如果是0，ZF=1。</p>
+<p>例如：11 11 11 11 + 00 00 00 01 = [1] 00 00 00 00 。此时最高位舍弃CF=1，ZF=1。</p>
+<h6 id="符号标志SF"><a href="#符号标志SF" class="headerlink" title="符号标志SF"></a>符号标志SF</h6><p>反映运算结果是正数还是负数。也就是最高位的状态。最高位是1，SF=1。反之SF=0。</p>
+<p>例如：00 11 10 10 + 01 11 11 00 = 10 11 01 10 ，最高位是1，那么SF=1。至于这个数到底是看做负数还是正数，是程序员说了算，而非程序说了算。SF仅仅用于标定，如果是符号数，那么高位是1，就是负数。如果不是符号数，那么就是正数。</p>
+<h6 id="溢出标志OF"><a href="#溢出标志OF" class="headerlink" title="溢出标志OF"></a>溢出标志OF</h6><p>如果运算产生溢出，那么OF=1，反之OF=0。</p>
+<p>认识这个标志位之前，先了解一个基本概念，为了方便计算<strong>在CPU中采用的是一个数的补码</strong>运算<strong>符号数</strong>。也是C语言采用的表示原理。</p>
+<p>例如 01 11 11 11 + 00 00 00 01 = 10 00 00 00 。在符号数里 127 + 1 = -128 。你会发现这个数，莫名其妙从正的变成了负的，这就<strong>超过了我们的表示范围</strong>，这就叫做<strong>溢出</strong>。如果产生溢出，那么OF=1。减法同理。-128 - 1 = 127 。</p>
+<p>处理器对两个数进行运算的时候，将会按照<strong>无符号数</strong>来设置是否进位的<strong>CF</strong>，而按照<strong>有符号数</strong>来确定是否溢出的<strong>OF</strong>。至于在实际操作时这到底是个什么数，由程序员来决定。这里可能有点绕，好好想想。</p>
+<p>例如：10 10 10 10 + 01 11 11 00 = [1] 00 10 01 10 。按照无符号数 170 + 124 = 294 = [256] +  38，这个数产生了进位，所以CF=1。但是按照有符号数 -86 + 124 = 38，并没有溢出，所以OF=0。</p>
+<table>
+<thead>
+<tr>
+<th align="center">加法运算及其结果</th>
+<th align="center">CF</th>
+<th align="center">OF</th>
+<th align="center">ZF</th>
+<th align="center">SF</th>
+<th align="center">PF</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">00 11 10 10 + 01 11 11 00 = [0] 10 11 01 10</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">10 10 10 10 + 01 11 11 00 = [1] 00 10 01 10</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">10 00 01 00 + 01 11 11 00 = [1] 00 00 00 00</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">1</td>
+</tr>
+</tbody></table>
+<h5 id="控制标志"><a href="#控制标志" class="headerlink" title="控制标志"></a>控制标志</h5><h6 id="方向标志DF"><a href="#方向标志DF" class="headerlink" title="方向标志DF"></a>方向标志DF</h6><p>用于串操作的时候确定操作方向。</p>
+<p>当该位置1时（DF=1），存储器地址自动减少，串操作指令为自动减量指令，即从高位到低位处理字符串；当该位置0时（DF=0），存储器地址自动增加，串操作指令为自动增量指令。</p>
+<h6 id="中断允许标志IF"><a href="#中断允许标志IF" class="headerlink" title="中断允许标志IF"></a>中断允许标志IF</h6><p>若IF=1，则CPU可以响应外部可屏蔽中断请求；若IF=0，则CPU不允许响应中断请求。IF的状态可由中断指令设置 。</p>
+<p>比如你的老师在上课，这时候一个人进来了，喊了报告试图打断老师讲课。此时IF=1的话，老师就会停止讲课，先处理这个学生迟到的问题，然后再回来讲课，这就是中断。如果IF=0，老师就会继续讲课，不理这个学生。</p>
+<h6 id="陷阱标志TF"><a href="#陷阱标志TF" class="headerlink" title="陷阱标志TF"></a>陷阱标志TF</h6><p>为程序调试而设的。当设置TF=1，CPU处于单步执行指令的方式；当设置TF=0时，CPU正常执行程序。</p>
+<p>单步执行指令——处理器在每条指令执行结束时，便产生一个编号为1的内部中断这种内部中断称为单步中断所以TF也称为单步标志利用单步中断可对程序进行逐条指令的调试这种逐条指令调试程序的方法就是单步调试</p>
+<h4 id="指令寄存器"><a href="#指令寄存器" class="headerlink" title="指令寄存器"></a>指令寄存器</h4><p>程序是由一条一条的指令组成的，这些指令存储在储存器中。那么我们如何知道我们的程序当前运行的指令在哪里呢？这时候就需要我们的<strong>16位指令寄存器IP</strong>。它会告诉CPU，当前程序执行到了哪里。</p>
+<p>IP是专用寄存器，不能拿来做其他操作。IP会在每条指令结束之后，自动加上执行指令的字节数，从而指向下一条指令。它也可以被一些特定的语句修改值，跳向指定的运行地点，例如循环分支等。<strong>它不能被直接修改</strong>。</p>
+<h4 id="段寄存器（缩写seg）"><a href="#段寄存器（缩写seg）" class="headerlink" title="段寄存器（缩写seg）"></a>段寄存器（缩写seg）</h4><table>
+<thead>
+<tr>
+<th align="center">访问存储器的目的</th>
+<th align="center">默认访问的段寄存器</th>
+<th align="center">可超越的段寄存器</th>
+<th align="center">偏移地址</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">取指令</td>
+<td align="center">CS</td>
+<td align="center">无</td>
+<td align="center">IP</td>
+</tr>
+<tr>
+<td align="center">堆栈操作</td>
+<td align="center">SS</td>
+<td align="center">无</td>
+<td align="center">SP</td>
+</tr>
+<tr>
+<td align="center">一般数据访问</td>
+<td align="center">DS</td>
+<td align="center">CS，ES，SS</td>
+<td align="center">EA</td>
+</tr>
+<tr>
+<td align="center">串操作的源操作数</td>
+<td align="center">DS</td>
+<td align="center">CS，ES，SS</td>
+<td align="center">SI</td>
+</tr>
+<tr>
+<td align="center">串操作的目的操作数</td>
+<td align="center">ES</td>
+<td align="center">无</td>
+<td align="center">DI</td>
+</tr>
+<tr>
+<td align="center">BP作为基址的寻址方式</td>
+<td align="center">SS</td>
+<td align="center">CS，DS，SS</td>
+<td align="center">EA</td>
+</tr>
+</tbody></table>
+<p>（EA = Effective Address，意思是有效的偏移地址，并不指某个特定寄存器，在寄存器相对寻址会讲。）</p>
+<h5 id="代码段寄存器CS"><a href="#代码段寄存器CS" class="headerlink" title="代码段寄存器CS"></a>代码段寄存器CS</h5><p>指向该程序代码的首地址。刚刚讲的IP，就是相对于CS的偏移量。</p>
+<p>用C语言来解释，你可以理解为CS[0]存放了，该程序的首条指令，CS[IP]就是下一条即将执行的指令。但是在汇编里面CS[IP]要写作CS:IP。</p>
+<h5 id="堆栈段寄存器SS"><a href="#堆栈段寄存器SS" class="headerlink" title="堆栈段寄存器SS"></a>堆栈段寄存器SS</h5><p>指向堆栈的首地址。还记得reg里面的SP吗？这就是相对于SS的偏移量。</p>
+<p>当前这个堆栈的栈顶元素就是SS:SP。</p>
+<h5 id="数据段寄存器DS"><a href="#数据段寄存器DS" class="headerlink" title="数据段寄存器DS"></a>数据段寄存器DS</h5><p>这个完全是由程序员自己定的，里面写的东西。</p>
+<p>比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DATAS SEGMENT</span><br><span class="line">       DATA1  DB        31H,21H,42H,52H,87H,23H,98H,01H</span><br><span class="line">DATAS ENDS</span><br></pre></td></tr></table></figure>
+
+<p>这里就声明了DS中的数据，按照我们存放的数据依次是8个8位数31H,21H,42H,52H,87H,23H,98H,01H。我们就可以按照地址DS:BX来依次访问各个数字。</p>
+<h5 id="附加段寄存器ES"><a href="#附加段寄存器ES" class="headerlink" title="附加段寄存器ES"></a>附加段寄存器ES</h5><p>附加的数据段，用于数据的保存。在串操作指令中将附加段ES作为其目的操作数的存放空间。</p>
+<h5 id="附加说明"><a href="#附加说明" class="headerlink" title="附加说明"></a>附加说明</h5><p>上述四个段就可以构成一个完整的程序，代码、堆栈、数据、附加。可以让我们模块化的管理汇编程序。</p>
+<h6 id="可超越段"><a href="#可超越段" class="headerlink" title="可超越段"></a>可超越段</h6><p>在上述的表格中，相信所有人都发现了一个叫做可超越段的字样。</p>
+<p>在汇编里，上述那么多标定地址的寄存器，实际上他们都有自己独特的用处，不能随意使用，这也是汇编区别于高级语言最大的一点。</p>
+<p>比如IP，指向的是相对于代码段CS，偏移IP的这条指令。在汇编里IP本身是一个地址,加上中括号[IP]就是这个地址指向的值（这个马上就会讲寻址），IP本身是偏移量，所以实际地址是CS:[IP]。但是我们也可以通过[IP]来直接访问，因为程序会默认把[IP]转换为CS:[IP]。因为这是一个专用寄存器！查询上表<strong>IP</strong>并不可以超越，所以它<strong>只能专用于CS</strong>。<strong>还有SP指向SS</strong>。<strong>串操作的DI指向ES</strong>。</p>
+<p>但是反观BX，这是指向数据段DS的。默认会在DS中找偏移为BX的数据值。但是这个时候我们想访问附加段的数据怎么办？就会使用超越段的代码，直接指定ES:[BX]。</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV CX,ES:[BX]</span><br></pre></td></tr></table></figure>
+
+<p>同理的其他的段超越前缀：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cs:</span><br><span class="line">ss:</span><br><span class="line">ds:</span><br><span class="line">es:</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="段寄存器的物理储存结构"><a href="#段寄存器的物理储存结构" class="headerlink" title="段寄存器的物理储存结构"></a>段寄存器的物理储存结构</h5><p>8086规定<strong>段地址低4位均为0</strong>，每段最大不超过64KB。但是并不要求最小值，而且各段之间可以重叠，乃至完全重合。前提是程序运行时不会发生冲突。比如代码段仅仅只有2KB大小，逻辑上有64KB大小，但是这时候你也可以将数据段就紧贴着代码段写，从2KB多1个字节开始写数据段，这样子代码段和数据段虽然重叠一部分，但是并不会影响程序的执行。</p>
+<p><img src="%E6%AE%B5%E5%AF%84%E5%AD%98%E5%99%A8%E7%89%A9%E7%90%86%E7%BB%93%E6%9E%84.png" alt="段寄存器物理结构"></p>
+<h3 id="8086的寻址方式"><a href="#8086的寻址方式" class="headerlink" title="8086的寻址方式"></a>8086的寻址方式</h3><p>之所以要讲寻址，是因为我们的数据并不是凭空产生，不论是键盘还是鼠标或则屏幕，他们之间交流的数据都保存在了某个地方，当CPU想要对这些数据进行运算的时候，就需要找到他们。如何找到这就是寻址。</p>
+<p>以最简单的代码为例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mov des,src	 ;将src的值复制给des</span><br></pre></td></tr></table></figure>
+
+<p>这条语句大概类似于高级语言的赋值语句。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">des = src;	<span class="comment">//将src的值复制给des</span></span><br></pre></td></tr></table></figure>
+
+<p>之所以讲类似，是因为寄存器的操作并不是随心所欲的，上面都讲了一些寄存器存在限制。这些会在后面讲指令的时候讨论。</p>
+<h4 id="立即数寻址"><a href="#立即数寻址" class="headerlink" title="立即数寻址"></a>立即数寻址</h4><p>立即数，说白了就是高级语言中直接放在代码里的数据。这个数字将会直接被保存在代码段中，当代码执行到此处时，自然就会用到该数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mov al,02h		;将al赋值为02h。此时的02h存在放在cs:[ip]中。</span><br><span class="line">mov ax,0102h	;将ax赋值为0102h。此时的0102h存在放在cs:[ip]中。</span><br></pre></td></tr></table></figure>
+
+<p>请注意位数相对应，8位放8位，16位放16位，不能说32位放16位等等。</p>
+<h4 id="寄存器寻址"><a href="#寄存器寻址" class="headerlink" title="寄存器寻址"></a>寄存器寻址</h4><p>寄存器寻址就是直接从CPU的8个16位寄存器、4个段寄存器（这里指的是段寄存器存储的段首地址，并不是这个地址指向的值）中读取保存的数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mov bx,ax	;将ax赋值给bx。</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="储存器寻址"><a href="#储存器寻址" class="headerlink" title="储存器寻址"></a>储存器寻址</h4><h5 id="直接寻址方式"><a href="#直接寻址方式" class="headerlink" title="直接寻址方式"></a>直接寻址方式</h5><p>通过一个数直接寻址，默认会在数据段ds中寻址。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mov ax,[2000h]	;将ds:[2000h]赋值给ax</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="寄存器间接寻址方式"><a href="#寄存器间接寻址方式" class="headerlink" title="寄存器间接寻址方式"></a>寄存器间接寻址方式</h5><p>可以将储存在段中的值找出来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mov ax,[si]	;将ds:[si]这个地址指向的值赋值给ax。</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="寄存器相对寻址方式"><a href="#寄存器相对寻址方式" class="headerlink" title="寄存器相对寻址方式"></a>寄存器相对寻址方式</h5><p>通过EA=BX/BP/SI/DI + 8/16位移量的值。请注意最小的数据单位是字节(Byte)，而不是1位2进制数(bit)。1B = 8b。</p>
+<p>BX、SI、DI的默认段是DS，BP的默认段是SS。当使用非默认段的时候，可以使用段超越前缀。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mov ax,[di+06h]	;将ds:[di+06h]的值赋值给ax</span><br><span class="line">mov ax,[bp]		;将ss:[bp]的值赋值给ax</span><br></pre></td></tr></table></figure>
+
+<p>如果偏移值相对于段首地址，超过了64KB(64*1024)，则会相对于64KB取模。</p>
+<h5 id="基址变址寻址方式"><a href="#基址变址寻址方式" class="headerlink" title="基址变址寻址方式"></a>基址变址寻址方式</h5><p>通过一个基址寄存器（BX/BP）加上一个变址寄存器（SI/DI）来构成一个EA。EA = BX/BP + SI/DI。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mov ax,[bx+si]		;将ds:[bx+si]赋值给ax</span><br><span class="line">mov ax,[bp+di]		;将ss:[bp+di]赋值给ax</span><br><span class="line">mov ax,ds:[bp+di]	;将ds:[bp+di]赋值给ax</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="相对基址变址寻址方式"><a href="#相对基址变址寻址方式" class="headerlink" title="相对基址变址寻址方式"></a>相对基址变址寻址方式</h5><p>EA = BX/BP + SI/DI + 8/16位移量的值。</p>
+<p>示例同基址变址寻址方式。</p>
+<h5 id="附加说明-1"><a href="#附加说明-1" class="headerlink" title="附加说明"></a>附加说明</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mov ax,[si+count]		;count可以是一个事先定义的常量或则变量</span><br><span class="line">mov ax,[bx+si+wnum]		;wnum也是常量或则变量</span><br><span class="line"></span><br><span class="line">mov ax,[bx][si]			;也可以写成mov ax,[bx+si]</span><br><span class="line">mov ax,count[si]		;也可以写成mov ax,[si+count]</span><br><span class="line">mov ax,wnum[bx][si]		;也可以写成mov ax,[bx+si+wnum]</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="数据寻址的组合"><a href="#数据寻址的组合" class="headerlink" title="数据寻址的组合"></a>数据寻址的组合</h4><p>数据的流通必须符合一定的法则，不然岂不是乱套了。</p>
+<table>
+<thead>
+<tr>
+<th align="center">寻址方式</th>
+<th align="center">符号与说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">立即数</td>
+<td align="center">IMM</td>
+</tr>
+<tr>
+<td align="center">寄存器</td>
+<td align="center">通用寄存器REG、段寄存器SEG</td>
+</tr>
+<tr>
+<td align="center">存储器</td>
+<td align="center">MEM</td>
+</tr>
+</tbody></table>
+<p><img src="%E6%95%B0%E6%8D%AE%E5%90%88%E6%B3%95%E6%B5%81%E9%80%9A%E5%9B%BE.png" alt="数据合法流通图"></p>
+<p>如上图，箭头就是数据流通的方向，简单讲几个。立即数可以到寄存器，但是不可能从寄存器到立即数。这是很明显的，以C语言为例。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a;</span><br><span class="line">a = <span class="number">3</span>;	<span class="comment">//合法</span></span><br><span class="line"><span class="number">3</span> = a;	<span class="comment">//错误！</span></span><br></pre></td></tr></table></figure>
+
+<p>数据可以在通用寄存器和通用寄存器之间流通，但是不能在存储器之间流通。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%80%83%E8%AF%95%E7%AC%94%E8%AE%B0/" rel="tag"># 考试笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/04/%E6%B1%87%E7%BC%96%E5%AE%9E%E9%AA%8C%E4%BB%A3%E7%A0%81/" rel="prev" title="汇编实验代码">
+      <i class="fa fa-chevron-left"></i> 汇编实验代码
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/20/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%EF%BC%883%EF%BC%89/" rel="next" title="汇编语言（二）">
+      汇编语言（二） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E8%BF%B0"><span class="nav-text">计算机的基本概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E7%A1%AC%E4%BB%B6"><span class="nav-text">计算机的硬件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-text">处理器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-text">存储器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E8%AE%BE%E5%A4%87"><span class="nav-text">外部设备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF"><span class="nav-text">系统总线</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80%E8%AE%BE%E8%AE%A1"><span class="nav-text">计算机的程序语言设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E8%AF%AD%E8%A8%80"><span class="nav-text">机器语言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80"><span class="nav-text">汇编语言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80"><span class="nav-text">高级语言</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="nav-text">数据的表示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%88%B6"><span class="nav-text">数制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%80%BC%E7%9A%84%E7%BC%96%E7%A0%81"><span class="nav-text">数值的编码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B4%E6%95%B0"><span class="nav-text">整数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E7%A0%81"><span class="nav-text">原码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8D%E7%A0%81"><span class="nav-text">反码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81"><span class="nav-text">补码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E7%9A%84%E7%BC%96%E7%A0%81"><span class="nav-text">字符的编码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ASCII"><span class="nav-text">ASCII</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unicode"><span class="nav-text">Unicode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GBK"><span class="nav-text">GBK</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8086%E5%BE%AE%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-text">8086微处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8086%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-text">8086的寄存器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%88%E7%BC%A9%E5%86%99reg%EF%BC%89"><span class="nav-text">通用寄存器（缩写reg）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-text">数据寄存器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8F%98%E5%9D%80%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-text">变址寄存器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-text">指针寄存器</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-text">标志寄存器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E6%A0%87%E5%BF%97"><span class="nav-text">状态标志</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%9B%E4%BD%8D%E6%A0%87%E5%BF%97CF"><span class="nav-text">进位标志CF</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%A5%87%E5%81%B6%E6%A0%87%E5%BF%97PF"><span class="nav-text">奇偶标志PF</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%B0%83%E6%95%B4%E6%A0%87%E5%BF%97AF"><span class="nav-text">调整标志AF</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E9%9B%B6%E6%A0%87%E5%BF%97ZF"><span class="nav-text">零标志ZF</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E6%A0%87%E5%BF%97SF"><span class="nav-text">符号标志SF</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%BA%A2%E5%87%BA%E6%A0%87%E5%BF%97OF"><span class="nav-text">溢出标志OF</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E6%A0%87%E5%BF%97"><span class="nav-text">控制标志</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%96%B9%E5%90%91%E6%A0%87%E5%BF%97DF"><span class="nav-text">方向标志DF</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E5%85%81%E8%AE%B8%E6%A0%87%E5%BF%97IF"><span class="nav-text">中断允许标志IF</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E9%99%B7%E9%98%B1%E6%A0%87%E5%BF%97TF"><span class="nav-text">陷阱标志TF</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-text">指令寄存器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AE%B5%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%88%E7%BC%A9%E5%86%99seg%EF%BC%89"><span class="nav-text">段寄存器（缩写seg）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E6%AE%B5%E5%AF%84%E5%AD%98%E5%99%A8CS"><span class="nav-text">代码段寄存器CS</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A0%86%E6%A0%88%E6%AE%B5%E5%AF%84%E5%AD%98%E5%99%A8SS"><span class="nav-text">堆栈段寄存器SS</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%AE%B5%E5%AF%84%E5%AD%98%E5%99%A8DS"><span class="nav-text">数据段寄存器DS</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%99%84%E5%8A%A0%E6%AE%B5%E5%AF%84%E5%AD%98%E5%99%A8ES"><span class="nav-text">附加段寄存器ES</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%99%84%E5%8A%A0%E8%AF%B4%E6%98%8E"><span class="nav-text">附加说明</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%8F%AF%E8%B6%85%E8%B6%8A%E6%AE%B5"><span class="nav-text">可超越段</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%AE%B5%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E7%89%A9%E7%90%86%E5%82%A8%E5%AD%98%E7%BB%93%E6%9E%84"><span class="nav-text">段寄存器的物理储存结构</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8086%E7%9A%84%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="nav-text">8086的寻址方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AB%8B%E5%8D%B3%E6%95%B0%E5%AF%BB%E5%9D%80"><span class="nav-text">立即数寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80"><span class="nav-text">寄存器寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%82%A8%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80"><span class="nav-text">储存器寻址</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="nav-text">直接寻址方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="nav-text">寄存器间接寻址方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E7%9B%B8%E5%AF%B9%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="nav-text">寄存器相对寻址方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9F%BA%E5%9D%80%E5%8F%98%E5%9D%80%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="nav-text">基址变址寻址方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%9B%B8%E5%AF%B9%E5%9F%BA%E5%9D%80%E5%8F%98%E5%9D%80%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="nav-text">相对基址变址寻址方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%99%84%E5%8A%A0%E8%AF%B4%E6%98%8E-1"><span class="nav-text">附加说明</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80%E7%9A%84%E7%BB%84%E5%90%88"><span class="nav-text">数据寻址的组合</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="康慧春"
+      src="/images/aaa.gif">
+  <p class="site-author-name" itemprop="name">康慧春</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/2738132159" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;2738132159" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/5880774808" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;5880774808" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">康慧春</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+<div class="powered-by">
+  <i class="fa fa-user-md"></i>
+  <span id="busuanzi_container_site_uv">
+    本站总访客数:<span id="busuanzi_value_site_uv"></span>&nbsp;&nbsp;| 
+  </span>
+  <span id="busuanzi_container_site_pv">
+      &nbsp;本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+  </div>
+  </div>
+
+  <script>
+      var now = new Date(); 
+      function createtime() { 
+          var grt= new Date("03/12/2019 12:00:00");//此处修改你的建站时间或者网站上线时间 
+          now.setTime(now.getTime()+250); 
+          days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+          if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+          mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+          snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+          document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+          document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+      } 
+  setInterval("createtime()",250);
+  </script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="//cdn.jsdelivr.net/gh/theme-next/theme-next-three@1/three.min.js"></script>
+    <script defer src="//cdn.jsdelivr.net/gh/theme-next/theme-next-three@latest/canvas_lines.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'FqVYHd2w8d1GR2oiPezc90bN-gzGzoHsz',
+      appKey     : 'v5NPCMaETpbIGgAWtljExUU9',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
