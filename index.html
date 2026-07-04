@@ -1,0 +1,835 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>企业开户风险值评估系统</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            padding-bottom: 100px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .header p {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+        
+        /* 已选摘要 */
+        .selected-summary {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .selected-summary h4 {
+            color: #1e293b;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+        .summary-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin: 4px;
+            background: #e0e7ff;
+            color: #3730a3;
+        }
+        .summary-tag .remove {
+            margin-left: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            opacity: 0.6;
+        }
+        .summary-tag .remove:hover {
+            opacity: 1;
+        }
+        .empty-state {
+            color: #94a3b8;
+            font-size: 0.9em;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        /* 维度卡片 */
+        .dimension-card {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .dimension-header {
+            padding: 16px 20px;
+            background: linear-gradient(90deg, #f8fafc 0%, #e2e8f0 100%);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e2e8f0;
+            transition: background 0.3s;
+        }
+        .dimension-header:hover {
+            background: linear-gradient(90deg, #e2e8f0 0%, #cbd5e1 100%);
+        }
+        .dimension-header h3 {
+            font-size: 1.15em;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .dimension-header .icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1em;
+        }
+        .dimension-header .arrow {
+            font-size: 1.2em;
+            color: #64748b;
+            transition: transform 0.3s;
+        }
+        .dimension-card.open .arrow {
+            transform: rotate(180deg);
+        }
+        .dimension-body {
+            padding: 16px 20px;
+            display: none;
+        }
+        .dimension-card.open .dimension-body {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 选项样式 - 不显示分值 */
+        .option-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px 14px;
+            margin-bottom: 8px;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #fafbfc;
+        }
+        .option-item:hover {
+            border-color: #94a3b8;
+            background: #f1f5f9;
+        }
+        .option-item.selected {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+        .option-item.veto {
+            border-color: #ef4444;
+            background: #fef2f2;
+        }
+        .option-item.veto.selected {
+            border-color: #dc2626;
+            background: #fee2e2;
+        }
+        .option-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            margin-top: 2px;
+            accent-color: #3b82f6;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .option-item.veto input[type="checkbox"] {
+            accent-color: #dc2626;
+        }
+        .option-content {
+            flex: 1;
+        }
+        .option-name {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+        .option-desc {
+            font-size: 0.82em;
+            color: #64748b;
+            margin-top: 4px;
+            line-height: 1.5;
+        }
+        .option-value {
+            display: none;
+        }
+        
+        /* 底部按钮 */
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 16px 20px;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            z-index: 100;
+        }
+        .btn {
+            padding: 12px 32px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #475569;
+        }
+        .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            font-size: 1.1em;
+            padding: 14px 48px;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
+        }
+        
+        /* 结果弹窗 */
+        .result-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            padding: 20px;
+        }
+        .result-overlay.show {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .result-modal {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: scaleIn 0.3s ease;
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .result-modal h2 {
+            font-size: 1.4em;
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+        .result-score-circle {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin: 0 auto 20px;
+            transition: all 0.5s ease;
+        }
+        .result-score-circle .score-num {
+            font-size: 3.2em;
+            line-height: 1;
+        }
+        .result-score-circle .score-label {
+            font-size: 0.9em;
+            margin-top: 6px;
+            opacity: 0.95;
+        }
+        .result-level {
+            font-size: 1.6em;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+        .result-desc {
+            color: #64748b;
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .result-principle {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .result-detail {
+            text-align: left;
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .result-detail h4 {
+            font-size: 0.95em;
+            color: #1e293b;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 6px;
+        }
+        .result-detail-item {
+            font-size: 0.85em;
+            color: #475569;
+            padding: 4px 0;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+        .result-detail-item:last-child {
+            border-bottom: none;
+        }
+        .result-detail-dim {
+            font-weight: 600;
+            color: #3b82f6;
+        }
+        .result-detail-val {
+            float: right;
+            font-weight: 600;
+        }
+        .result-detail-val.positive { color: #16a34a; }
+        .result-detail-val.negative { color: #dc2626; }
+        .result-detail-val.veto { color: #7f1d1d; }
+        
+        /* 颜色等级 */
+        .level-excellent { background: linear-gradient(135deg, #22c55e, #16a34a); }
+        .level-good { background: linear-gradient(135deg, #84cc16, #65a30d); }
+        .level-normal { background: linear-gradient(135deg, #eab308, #ca8a04); }
+        .level-warning { background: linear-gradient(135deg, #f97316, #ea580c); }
+        .level-danger { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .level-veto { background: linear-gradient(135deg, #7f1d1d, #450a0a); }
+        
+        .principle-excellent { background: #dcfce7; color: #166534; }
+        .principle-good { background: #dcfce7; color: #166534; }
+        .principle-normal { background: #fef9c3; color: #854d0e; }
+        .principle-warning { background: #ffedd5; color: #9a3412; }
+        .principle-danger { background: #fee2e2; color: #991b1b; }
+        .principle-veto { background: #fecaca; color: #7f1d1d; }
+        
+        .veto-badge {
+            background: #dc2626;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 16px;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.6em; }
+            .result-modal { padding: 24px; }
+            .result-score-circle { width: 130px; height: 130px; }
+            .result-score-circle .score-num { font-size: 2.6em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏦 企业开户风险值评估系统</h1>
+            <p>请勾选各维度对应的风险情形，完成后点击提交查看评估结果</p>
+        </div>
+        
+        <!-- 已选摘要 -->
+        <div class="selected-summary" id="selectedSummary">
+            <h4>📋 已选风险项</h4>
+            <div id="summaryContent">
+                <div class="empty-state">暂无选择，请从下方各维度勾选对应情形</div>
+            </div>
+        </div>
+        
+        <!-- 维度卡片 -->
+        <div id="dimensions"></div>
+    </div>
+    
+    <!-- 底部按钮 -->
+    <div class="bottom-bar">
+        <button class="btn btn-secondary" onclick="resetAll()">🔄 重置</button>
+        <button class="btn btn-submit" onclick="submitResult()">✅ 提交评估</button>
+    </div>
+    
+    <!-- 结果弹窗 -->
+    <div class="result-overlay" id="resultOverlay" onclick="closeResult(event)">
+        <div class="result-modal" onclick="event.stopPropagation()">
+            <h2>📊 企业开户风险评估结果</h2>
+            <div class="result-score-circle level-excellent" id="resultScoreCircle">
+                <div class="score-num" id="resultScoreNum">100</div>
+                <div class="score-label">风险值</div>
+            </div>
+            <div class="veto-badge" id="resultVetoBadge" style="display:none;">⚠️ 一票否决 - 禁止开户</div>
+            <div class="result-level" id="resultLevel" style="color: #16a34a;">极低风险</div>
+            <div class="result-principle principle-excellent" id="resultPrinciple">全面容错</div>
+            <div class="result-desc" id="resultDesc">具备正规国资备案资质，经营稳定、合规体系完善</div>
+            
+            <div class="result-detail" id="resultDetail">
+                <h4>📋 评估明细</h4>
+                <div id="resultDetailContent"></div>
+            </div>
+            
+            <button class="btn btn-primary" onclick="closeResult()" style="margin-right: 8px;">关闭</button>
+            <button class="btn btn-secondary" onclick="exportFromModal()">📄 导出报告</button>
+        </div>
+    </div>
+
+<script>
+// ==================== 风险数据 ====================
+const riskData = {
+    "企业类型": {
+        icon: "🏢",
+        color: "#3b82f6",
+        items: [
+            {name: "央企、国企、上市公司、政府平台企业等", value: 100, level: "极低风险", desc: "具备正规国资备案资质，经营稳定、合规体系完善，信息公开透明、监管严格、经营规范", principle: "全面容错"},
+            {name: "实体生产制造业、连锁实体商超、正规民办医疗机构、民办学校", value: 90, level: "低风险", desc: "有厂房/门店、资金以货款、工资为主，无不明居间资金，经营状态适中", principle: "标准管控"},
+            {name: "线下零售、餐饮、生鲜、物业、装修实体小微（无大额居间贸易）", value: 80, level: "中风险", desc: "门店小额经营，经营状态适中，无天然高危属性", principle: "标准管控"},
+            {name: "经营范围含劳务外包、人力资源、咨询类、设计类，企业管理、及线上交易，居间中介", value: 70, level: "中低风险", desc: "无实物贸易，易公私户互转、资金过渡，线上限额从严", principle: "标准管控"},
+            {name: "企业名称含科技、商贸、贸易，无实体货物，做信息对接、居间撮合", value: 60, level: "中高风险", desc: "高频批量代发、小额分散转账，出租账户高发行业", principle: "标准管控"},
+            {name: "经营范围含虚拟货币、外汇兑换、无资质投融资、不明跨境居间、大宗无货贸易", value: 50, level: "极高风险", desc: "涉赌涉诈、洗钱高频行业，直接最低档管控", principle: "标准管控"},
+        ]
+    },
+    "法人及实控人资质": {
+        icon: "👤",
+        color: "#8b5cf6",
+        items: [
+            {name: "精准治核查高危", value: -40, desc: "涉诈前科高危人员"},
+            {name: "精准治核查可疑高危", value: -20, desc: "公安分析出的数据均属于高风险"},
+            {name: "当前有效限高令（未解除）", value: -20, desc: "人员高风险"},
+            {name: "历史限高，已结清解除（3年内）", value: -15, desc: "历史风险留存"},
+            {name: "年龄 ≤ 20周岁 或 年龄 ≥ 65周岁", value: -10, desc: "未成年/刚成年，高龄，履职能力与真实控制存疑，疑似挂名"},
+            {name: "年龄 20-25周岁 或 年龄 60-65周岁", value: -8, desc: "偏年轻，关注类"},
+            {name: "担任3个以上企业法人或存在多层嵌套（≥3层）股权结构", value: -5, desc: "职业法人，穿透识别难度大"},
+            {name: "关联企业注册地址高度集中（同一地址≥2家）", value: -5, desc: "集群注册空壳嫌疑"},
+            {name: "同一实控人批量注册多家同类企业", value: -5, desc: ""},
+            {name: "户籍地与企业经营地分属两省", value: -5, desc: "无合理经营佐证（无购销合同、无本地厂房门店）"},
+            {name: "异地户籍", value: -5, desc: "本地仅临时租住，居住未满6个月，无稳定经营场所"},
+        ]
+    },
+    "公司经营情况": {
+        icon: "📊",
+        color: "#06b6d4",
+        items: [
+            {name: "无法提供装修、设备采购、场地租赁、招工等前期筹备凭证", value: -20, desc: "空壳公司，无实际经营规划，开户用于资金过账、账户买卖"},
+            {name: "无任何前期经营沟通、订单、合作意向材料", value: -20, desc: ""},
+            {name: "主营业务、主要客户、供应商名称、结算周期、交易金额时含糊其辞、前后矛盾", value: -15, desc: ""},
+            {name: "预估营收与企业体量、场地、人员严重脱节、不合逻辑，且无合理解释", value: -20, desc: ""},
+            {name: "企业的经营事实与企业经营范围不符", value: -15, desc: ""},
+            {name: "经营异常、工商列入警示名单", value: -999, desc: "主体资质不合规，直接拉满本维度风险", veto: true},
+        ]
+    },
+    "注册及经营场所情况": {
+        icon: "📍",
+        color: "#f59e0b",
+        items: [
+            {name: "新设企业暂未开展业务，可提供场地、设备、招工筹备材料", value: -20, desc: ""},
+            {name: "注册地、经营地两地完全分离，无合理解释", value: -15, desc: "中高风险，账户失联风险高"},
+            {name: "经营场所临时、短期租赁，租期不足3个月，或居民楼", value: -20, desc: "中风险，短期开户转移资金后失联"},
+            {name: "经营场所与业务范围明显不匹配", value: -20, desc: ""},
+            {name: "一址多照（同一地址注册多家企业）、短期内频繁变更注册地址", value: -15, desc: "中高风险，涉诈、洗钱高发"},
+            {name: "地址为虚拟托管、产业园、孵化器、商务秘书公司、集群注册托管（无实体办公）", value: -20, desc: "高风险，极易为空壳、买卖账户、虚开发票主体"},
+            {name: "注册地址虚假、不存在、无法送达", value: -999, desc: "注册地址为企业孵化器、招商园区、托管中心、集中登记地", veto: true},
+        ]
+    },
+    "资料审查": {
+        icon: "📑",
+        color: "#ec4899",
+        items: [
+            {name: "开户资料存在伪造、冒用、过期失效、信息虚假", value: -999, desc: "重大开户风险，直接判定本项0分，暂停开户", veto: true},
+            {name: "基础资料真实有效，部分辅助经营资料信息不一致、缺失，存在故意规避审查的情节", value: -30, desc: "辅助经营资料包括：租赁合同、购销、业务合同、完税凭证、水电缴费单、物业缴费单等"},
+            {name: "基础资料真实有效，部分辅助经营资料信息不一致、缺失、轻微瑕疵，可以补充完善", value: -10, desc: "部分辅助经营资料存在轻微瑕疵或暂时缺失，客户承诺限期补齐，无造假、冒用风险"},
+            {name: "拒绝提供公司章程、股东名册、股权转让协议等收益人识别资料或提供资料不完整不准确", value: -20, desc: ""},
+            {name: "营业执照成立15日内立即申请开立对公账户", value: -25, desc: ""},
+            {name: "营业执照注册6个月以内，申请开立账户", value: -10, desc: "无经营沉淀，账户异动风险极高"},
+            {name: "营业执照注册3年以上，申请开立基本存款账户", value: -10, desc: ""},
+        ]
+    },
+    "开户行为及初期交易需求": {
+        icon: "🔍",
+        color: "#6366f1",
+        items: [
+            {name: "同一经办人在同一网点开立3户及以上账户", value: -20, desc: ""},
+            {name: "开户核实环节法人或经办人行为异常", value: -30, desc: "法人对企业经营情况不了解，答非所问、背诵式回答企业经营信息；回避股权、上下游、营收问题；不愿留自有手机号，经办人有配合掩饰行为等"},
+            {name: "规避或拒绝提供佐证", value: -20, desc: "拒不提供股东身份证、出资流水、租赁合同、上下游合同等经营佐证；以隐私为由拒绝核实"},
+            {name: "重点询问网银、大额转账、公转私限额，对账户年费、对账、结算规则毫不关心", value: -15, desc: ""},
+            {name: "回避经营核查，逃避或拒绝上门尽调", value: -30, desc: ""},
+            {name: "急于开户、催促快速办结，回避经营问询", value: -30, desc: ""},
+            {name: "主动询问销户难易、能否多银行多头开户等试探行为", value: -20, desc: ""},
+            {name: "过度配合或拖沓不积极配合", value: -10, desc: ""},
+            {name: "其他异常可疑行为", value: -10, desc: "柜员现场发现的异常可疑行为"},
+        ]
+    }
+};
+
+let selectedItems = {};
+let lastCalculatedResult = null;
+
+function init() {
+    renderDimensions();
+    updateSummary();
+}
+
+function renderDimensions() {
+    const container = document.getElementById('dimensions');
+    let html = '';
+    
+    for (const [dimName, dimData] of Object.entries(riskData)) {
+        html += `
+        <div class="dimension-card" id="card-${dimName.replace(/\\s+/g, '-').replace(/[及、]/g, '')}">
+            <div class="dimension-header" onclick="toggleCard(this)">
+                <h3>
+                    <span class="icon" style="background: ${dimData.color}20; color: ${dimData.color};">${dimData.icon}</span>
+                    ${dimName}
+                </h3>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="dimension-body">
+                ${dimData.items.map((item, idx) => `
+                    <div class="option-item ${item.veto ? 'veto' : ''}" 
+                         onclick="toggleItem('${dimName}', ${idx}, event)"
+                         id="item-${dimName.replace(/\\s+/g, '-').replace(/[及、]/g, '')}-${idx}">
+                        <input type="checkbox" 
+                               ${dimName === '企业类型' ? 'name="enterpriseType"' : ''}
+                               onchange="toggleItem('${dimName}', ${idx}, event)"
+                               id="cb-${dimName.replace(/\\s+/g, '-').replace(/[及、]/g, '')}-${idx}">
+                        <div class="option-content">
+                            <div class="option-name">${item.name}</div>
+                            ${item.desc ? `<div class="option-desc">${item.desc}</div>` : ''}
+                        </div>
+                        <div class="option-value ${item.veto ? 'value-veto' : (item.value > 0 ? 'value-positive' : 'value-negative')}">
+                            ${item.veto ? '一票否决' : (item.value > 0 ? '+' : '') + item.value}
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+        `;
+    }
+    
+    container.innerHTML = html;
+}
+
+function toggleCard(header) {
+    const card = header.closest('.dimension-card');
+    card.classList.toggle('open');
+}
+
+function toggleItem(dimName, idx, event) {
+    event.stopPropagation();
+    
+    const item = riskData[dimName].items[idx];
+    const key = `${dimName}-${idx}`;
+    const checkbox = document.getElementById(`cb-${dimName.replace(/\\s+/g, '-').replace(/[及、]/g, '')}-${idx}`);
+    const optionEl = document.getElementById(`item-${dimName.replace(/\\s+/g, '-').replace(/[及、]/g, '')}-${idx}`);
+    
+    if (dimName === '企业类型') {
+        for (let i = 0; i < riskData[dimName].items.length; i++) {
+            const otherKey = `${dimName}-${i}`;
+            if (otherKey !== key && selectedItems[otherKey]) {
+                delete selectedItems[otherKey];
+                const otherCb = document.getElementById(`cb-${dimName.replace(/\\s+/g, '-').replace(/[及、]/g, '')}-${i}`);
+                const otherEl = document.getElementById(`item-${dimName.replace(/\\s+/g, '-').replace(/[及、]/g, '')}-${i}`);
+                if (otherCb) otherCb.checked = false;
+                if (otherEl) otherEl.classList.remove('selected');
+            }
+        }
+    }
+    
+    if (selectedItems[key]) {
+        delete selectedItems[key];
+        checkbox.checked = false;
+        optionEl.classList.remove('selected');
+    } else {
+        selectedItems[key] = { dimName, idx, item };
+        checkbox.checked = true;
+        optionEl.classList.add('selected');
+    }
+    
+    updateSummary();
+}
+
+function updateSummary() {
+    const container = document.getElementById('summaryContent');
+    const items = Object.values(selectedItems);
+    
+    if (items.length === 0) {
+        container.innerHTML = '<div class="empty-state">暂无选择，请从下方各维度勾选对应情形</div>';
+        return;
+    }
+    
+    let html = '';
+    items.forEach(data => {
+        const item = data.item;
+        html += `
+            <span class="summary-tag" style="background: #e0e7ff; color: #3730a3; border: 1px solid #c7d2fe;">
+                ${data.dimName}: ${item.name}
+                <span class="remove" onclick="removeItem('${data.dimName}', ${data.idx}, event)">×</span>
+            </span>
+        `;
+    });
+    container.innerHTML = html;
+}
+
+function removeItem(dimName, idx, event) {
+    event.stopPropagation();
+    toggleItem(dimName, idx, { stopPropagation: () => {} });
+}
+
+function resetAll() {
+    selectedItems = {};
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+    document.querySelectorAll('.option-item').forEach(el => el.classList.remove('selected'));
+    updateSummary();
+    closeResult();
+}
+
+function calculateResult() {
+    let baseScore = 0;
+    let hasEnterpriseType = false;
+    let hasVeto = false;
+    let vetoReasons = [];
+    let selectedPrinciple = "标准管控";
+    let selectedLevel = "中风险";
+    let detailItems = [];
+    
+    for (const [key, data] of Object.entries(selectedItems)) {
+        const item = data.item;
+        
+        if (data.dimName === '企业类型') {
+            baseScore = item.value;
+            hasEnterpriseType = true;
+            selectedPrinciple = item.principle || "标准管控";
+            selectedLevel = item.level;
+            detailItems.push({ dim: data.dimName, name: item.name, value: item.value, isBase: true });
+        } else if (item.veto) {
+            hasVeto = true;
+            vetoReasons.push(item.name);
+            detailItems.push({ dim: data.dimName, name: item.name, value: item.value, isVeto: true });
+        } else {
+            baseScore += item.value;
+            detailItems.push({ dim: data.dimName, name: item.name, value: item.value });
+        }
+    }
+    
+    if (!hasEnterpriseType) {
+        baseScore = 100;
+        detailItems.unshift({ dim: "企业类型", name: "未选择（默认）", value: 100, isBase: true });
+        for (const [key, data] of Object.entries(selectedItems)) {
+            if (!data.item.veto) {
+                baseScore += data.item.value;
+            }
+        }
+    }
+    
+    let finalScore = Math.max(0, Math.min(100, baseScore));
+    if (hasVeto) finalScore = 0;
+    
+    return { finalScore, hasVeto, vetoReasons, selectedPrinciple, selectedLevel, detailItems };
+}
+
+function submitResult() {
+    const result = calculateResult();
+    lastCalculatedResult = result;
+    
+    const overlay = document.getElementById('resultOverlay');
+    const scoreCircle = document.getElementById('resultScoreCircle');
+    const scoreNum = document.getElementById('resultScoreNum');
+    const level = document.getElementById('resultLevel');
+    const desc = document.getElementById('resultDesc');
+    const principle = document.getElementById('resultPrinciple');
+    const vetoBadge = document.getElementById('resultVetoBadge');
+    const detailContent = document.getElementById('resultDetailContent');
+    
+    scoreNum.textContent = result.finalScore;
+    
+    scoreCircle.className = 'result-score-circle';
+    level.style.color = '';
+    principle.className = 'result-principle';
+    
+    if (result.hasVeto) {
+        scoreCircle.classList.add('level-veto');
+        level.textContent = '一票否决 - 禁止开户';
+        level.style.color = '#7f1d1d';
+        desc.textContent = '存在以下一票否决情形：' + result.vetoReasons.join('、');
+        principle.classList.add('principle-veto');
+        principle.textContent = '暂停开户';
+        vetoBadge.style.display = 'inline-block';
+    } else if (result.finalScore >= 90) {
+        scoreCircle.classList.add('level-excellent');
+        level.textContent = '极低风险';
+        level.style.color = '#16a34a';
+        desc.textContent = '具备正规国资备案资质，经营稳定、合规体系完善，信息公开透明、监管严格、经营规范';
+        principle.classList.add('principle-excellent');
+        principle.textContent = result.selectedPrinciple;
+        vetoBadge.style.display = 'none';
+    } else if (result.finalScore >= 80) {
+        scoreCircle.classList.add('level-good');
+        level.textContent = '低风险';
+        level.style.color = '#65a30d';
+        desc.textContent = '有厂房/门店、资金以货款、工资为主，无不明居间资金，经营状态适中，执行标准风控尺度';
+        principle.classList.add('principle-good');
+        principle.textContent = result.selectedPrinciple;
+        vetoBadge.style.display = 'none';
+    } else if (result.finalScore >= 60) {
+        scoreCircle.classList.add('level-normal');
+        level.textContent = '中风险 / 中低风险';
+        level.style.color = '#ca8a04';
+        desc.textContent = '门店小额经营或线上交易为主，经营状态适中，需关注资金往来合规性';
+        principle.classList.add('principle-normal');
+        principle.textContent = result.selectedPrinciple;
+        vetoBadge.style.display = 'none';
+    } else if (result.finalScore >= 40) {
+        scoreCircle.classList.add('level-warning');
+        level.textContent = '中高风险';
+        level.style.color = '#ea580c';
+        desc.textContent = '高频批量代发、小额分散转账，出租账户高发行业，需从严管控';
+        principle.classList.add('principle-warning');
+        principle.textContent = result.selectedPrinciple;
+        vetoBadge.style.display = 'none';
+    } else {
+        scoreCircle.classList.add('level-danger');
+        level.textContent = '极高风险';
+        level.style.color = '#dc2626';
+        desc.textContent = '涉赌涉诈、洗钱高频行业，直接最低档管控，建议拒绝开户';
+        principle.classList.add('principle-danger');
+        principle.textContent = result.selectedPrinciple;
+        vetoBadge.style.display = 'none';
+    }
+    
+    let detailHtml = '';
+    result.detailItems.forEach(d => {
+        let valClass = d.value > 0 ? 'positive' : (d.value < 0 ? 'negative' : '');
+        if (d.isVeto) valClass = 'veto';
+        let valText = d.isVeto ? '一票否决' : (d.value > 0 ? '+' : '') + d.value;
+        detailHtml += `<div class="result-detail-item">
+            <span class="result-detail-dim">${d.dim}</span>: ${d.name}
+            <span class="result-detail-val ${valClass}">${valText}</span>
+        </div>`;
+    });
+    detailContent.innerHTML = detailHtml;
+    
+    overlay.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeResult(event) {
+    if (event && event.target !== event.currentTarget) return;
+    document.getElementById('resultOverlay').classList.remove('show');
+    document.body.style.overflow = '';
+}
+
+function exportFromModal() {
+    const result = lastCalculatedResult || calculateResult();
+    const now = new Date();
+    const dateStr = now.toLocaleString('zh-CN');
+    
+    let levelText = document.getElementById('resultLevel').textContent;
+    let principleText = document.getElementById('resultPrinciple').textContent;
+    let descText = document.getElementById('resultDesc').textContent;
+    
+    let report = `============================================\n`;
+    report += `     企业开户风险值评估报告\n`;
+    report += `============================================\n`;
+    report += `评估时间：${dateStr}\n`;
+    report += `------------------------------------------\n`;
+    report += `【综合风险值】${result.finalScore} 分\n`;
+    report += `【风险等级】${levelText}\n`;
+    report += `【管控原则】${principleText}\n`;
+    report += `【评估说明】${descText}\n`;
+    report += `------------------------------------------\n`;
+    report += `【评估明细】\n`;
+    
+    result.detailItems.forEach(d => {
+        let valText = d.isVeto ? '一票否决' : (d.value > 0 ? '+' : '') + d.value;
+        report += `■ ${d.dim}: ${d.name} [${valText}]\n`;
+    });
+    
+    report += `\n------------------------------------------\n`;
+    report += `评估人签字：_______________\n`;
+    report += `复核人签字：_______________\n`;
+    report += `============================================\n`;
+    
+    const blob = new Blob([report], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `企业风险值评估报告_${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+init();
+</script>
+</body>
+</html>
