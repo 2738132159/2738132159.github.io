@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -78,6 +78,15 @@
             margin-bottom: 16px;
             overflow: hidden;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .dimension-card.required .dimension-header {
+            background: linear-gradient(90deg, #fef3c7 0%, #fde68a 100%);
+        }
+        .dimension-card.required .dimension-header h3::after {
+            content: " *必选";
+            color: #dc2626;
+            font-size: 0.8em;
+            font-weight: bold;
         }
         .dimension-header {
             padding: 16px 20px;
@@ -263,11 +272,13 @@
             background: white;
             border-radius: 20px;
             padding: 32px;
-            max-width: 480px;
+            max-width: 520px;
             width: 100%;
             text-align: center;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             animation: scaleIn 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
         }
         @keyframes scaleIn {
             from { transform: scale(0.8); opacity: 0; }
@@ -317,8 +328,34 @@
             border-radius: 8px;
             font-size: 1em;
             font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        /* 最高限额 */
+        .limit-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 16px 20px;
             margin-bottom: 20px;
         }
+        .limit-box .limit-title {
+            font-size: 0.9em;
+            color: #92400e;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        .limit-box .limit-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #b45309;
+        }
+        .limit-box .limit-range {
+            font-size: 0.8em;
+            color: #a16207;
+            margin-top: 4px;
+        }
+        
         .result-detail {
             text-align: left;
             background: #f8fafc;
@@ -386,6 +423,39 @@
             50% { transform: scale(1.05); }
         }
         
+        /* 提示弹窗 */
+        .toast-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.4);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 300;
+        }
+        .toast-overlay.show {
+            display: flex;
+        }
+        .toast-modal {
+            background: white;
+            border-radius: 16px;
+            padding: 24px 32px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        .toast-modal .toast-icon {
+            font-size: 3em;
+            margin-bottom: 12px;
+        }
+        .toast-modal .toast-text {
+            font-size: 1.1em;
+            color: #1e293b;
+            margin-bottom: 16px;
+        }
+        
         /* 响应式 */
         @media (max-width: 768px) {
             .header h1 { font-size: 1.6em; }
@@ -431,6 +501,14 @@
             <div class="veto-badge" id="resultVetoBadge" style="display:none;">⚠️ 一票否决 - 禁止开户</div>
             <div class="result-level" id="resultLevel" style="color: #16a34a;">极低风险</div>
             <div class="result-principle principle-excellent" id="resultPrinciple">全面容错</div>
+            
+            <!-- 最高限额 -->
+            <div class="limit-box" id="limitBox">
+                <div class="limit-title">💰 最高限额</div>
+                <div class="limit-value" id="limitValue">30万</div>
+                <div class="limit-range" id="limitRange">分值范围：80分（不含）~ 100分</div>
+            </div>
+            
             <div class="result-desc" id="resultDesc">具备正规国资备案资质，经营稳定、合规体系完善</div>
             
             <div class="result-detail" id="resultDetail">
@@ -442,6 +520,15 @@
             <button class="btn btn-secondary" onclick="exportFromModal()">📄 导出报告</button>
         </div>
     </div>
+    
+    <!-- 提示弹窗 -->
+    <div class="toast-overlay" id="toastOverlay" onclick="closeToast()">
+        <div class="toast-modal" onclick="event.stopPropagation()">
+            <div class="toast-icon" id="toastIcon">⚠️</div>
+            <div class="toast-text" id="toastText">请先选择企业类型</div>
+            <button class="btn btn-primary" onclick="closeToast()">知道了</button>
+        </div>
+    </div>
 
 <script>
 // ==================== 风险数据 ====================
@@ -449,6 +536,7 @@ const riskData = {
     "企业类型": {
         icon: "🏢",
         color: "#3b82f6",
+        required: true,
         items: [
             {name: "央企、国企、上市公司、政府平台企业等", value: 100, level: "极低风险", desc: "具备正规国资备案资质，经营稳定、合规体系完善，信息公开透明、监管严格、经营规范", principle: "全面容错"},
             {name: "实体生产制造业、连锁实体商超、正规民办医疗机构、民办学校", value: 90, level: "低风险", desc: "有厂房/门店、资金以货款、工资为主，无不明居间资金，经营状态适中", principle: "标准管控"},
@@ -543,8 +631,9 @@ function renderDimensions() {
     let html = '';
     
     for (const [dimName, dimData] of Object.entries(riskData)) {
+        const requiredClass = dimData.required ? 'required' : '';
         html += `
-        <div class="dimension-card" id="card-${dimName.replace(/\\s+/g, '-').replace(/[及、]/g, '')}">
+        <div class="dimension-card ${requiredClass}" id="card-${dimName.replace(/\\s+/g, '-').replace(/[及、]/g, '')}">
             <div class="dimension-header" onclick="toggleCard(this)">
                 <h3>
                     <span class="icon" style="background: ${dimData.color}20; color: ${dimData.color};">${dimData.icon}</span>
@@ -652,6 +741,22 @@ function resetAll() {
     closeResult();
 }
 
+// ==================== 限额标准 ====================
+function getLimitInfo(score) {
+    if (score > 80) {
+        return { limit: '30万', range: '80分（不含）~ 100分' };
+    } else if (score > 70) {
+        return { limit: '10万', range: '70分（不含）~ 80分' };
+    } else if (score > 60) {
+        return { limit: '5万', range: '60分（不含）~ 70分' };
+    } else if (score > 50) {
+        return { limit: '1万', range: '50分（不含）~ 60分' };
+    } else {
+        return { limit: '0万', range: '0分（不含）~ 50分' };
+    }
+}
+
+// ==================== 计算结果（修复版）====================
 function calculateResult() {
     let baseScore = 0;
     let hasEnterpriseType = false;
@@ -661,16 +766,29 @@ function calculateResult() {
     let selectedLevel = "中风险";
     let detailItems = [];
     
+    // 先找企业类型
     for (const [key, data] of Object.entries(selectedItems)) {
-        const item = data.item;
-        
         if (data.dimName === '企业类型') {
-            baseScore = item.value;
+            baseScore = data.item.value;
             hasEnterpriseType = true;
-            selectedPrinciple = item.principle || "标准管控";
-            selectedLevel = item.level;
-            detailItems.push({ dim: data.dimName, name: item.name, value: item.value, isBase: true });
-        } else if (item.veto) {
+            selectedPrinciple = data.item.principle || "标准管控";
+            selectedLevel = data.item.level;
+            detailItems.push({ dim: data.dimName, name: data.item.name, value: data.item.value, isBase: true });
+            break;
+        }
+    }
+    
+    // 企业类型未选，返回null
+    if (!hasEnterpriseType) {
+        return null;
+    }
+    
+    // 再累加其他维度
+    for (const [key, data] of Object.entries(selectedItems)) {
+        if (data.dimName === '企业类型') continue;
+        
+        const item = data.item;
+        if (item.veto) {
             hasVeto = true;
             vetoReasons.push(item.name);
             detailItems.push({ dim: data.dimName, name: item.name, value: item.value, isVeto: true });
@@ -680,24 +798,36 @@ function calculateResult() {
         }
     }
     
-    if (!hasEnterpriseType) {
-        baseScore = 100;
-        detailItems.unshift({ dim: "企业类型", name: "未选择（默认）", value: 100, isBase: true });
-        for (const [key, data] of Object.entries(selectedItems)) {
-            if (!data.item.veto) {
-                baseScore += data.item.value;
-            }
-        }
-    }
-    
     let finalScore = Math.max(0, Math.min(100, baseScore));
     if (hasVeto) finalScore = 0;
     
     return { finalScore, hasVeto, vetoReasons, selectedPrinciple, selectedLevel, detailItems };
 }
 
+// ==================== 提示弹窗 ====================
+function showToast(icon, text) {
+    document.getElementById('toastIcon').textContent = icon;
+    document.getElementById('toastText').textContent = text;
+    document.getElementById('toastOverlay').classList.add('show');
+}
+
+function closeToast() {
+    document.getElementById('toastOverlay').classList.remove('show');
+}
+
+// ==================== 提交评估 ====================
 function submitResult() {
     const result = calculateResult();
+    
+    // 企业类型未选，提示
+    if (result === null) {
+        showToast('⚠️', '请先选择【企业类型】');
+        // 自动展开企业类型卡片
+        const card = document.getElementById('card-企业类型');
+        if (card) card.classList.add('open');
+        return;
+    }
+    
     lastCalculatedResult = result;
     
     const overlay = document.getElementById('resultOverlay');
@@ -707,6 +837,8 @@ function submitResult() {
     const desc = document.getElementById('resultDesc');
     const principle = document.getElementById('resultPrinciple');
     const vetoBadge = document.getElementById('resultVetoBadge');
+    const limitValue = document.getElementById('limitValue');
+    const limitRange = document.getElementById('limitRange');
     const detailContent = document.getElementById('resultDetailContent');
     
     scoreNum.textContent = result.finalScore;
@@ -723,6 +855,8 @@ function submitResult() {
         principle.classList.add('principle-veto');
         principle.textContent = '暂停开户';
         vetoBadge.style.display = 'inline-block';
+        limitValue.textContent = '0万';
+        limitRange.textContent = '分值范围：一票否决';
     } else if (result.finalScore >= 90) {
         scoreCircle.classList.add('level-excellent');
         level.textContent = '极低风险';
@@ -731,6 +865,9 @@ function submitResult() {
         principle.classList.add('principle-excellent');
         principle.textContent = result.selectedPrinciple;
         vetoBadge.style.display = 'none';
+        const info = getLimitInfo(result.finalScore);
+        limitValue.textContent = info.limit;
+        limitRange.textContent = '分值范围：' + info.range;
     } else if (result.finalScore >= 80) {
         scoreCircle.classList.add('level-good');
         level.textContent = '低风险';
@@ -739,6 +876,9 @@ function submitResult() {
         principle.classList.add('principle-good');
         principle.textContent = result.selectedPrinciple;
         vetoBadge.style.display = 'none';
+        const info = getLimitInfo(result.finalScore);
+        limitValue.textContent = info.limit;
+        limitRange.textContent = '分值范围：' + info.range;
     } else if (result.finalScore >= 60) {
         scoreCircle.classList.add('level-normal');
         level.textContent = '中风险 / 中低风险';
@@ -747,6 +887,9 @@ function submitResult() {
         principle.classList.add('principle-normal');
         principle.textContent = result.selectedPrinciple;
         vetoBadge.style.display = 'none';
+        const info = getLimitInfo(result.finalScore);
+        limitValue.textContent = info.limit;
+        limitRange.textContent = '分值范围：' + info.range;
     } else if (result.finalScore >= 40) {
         scoreCircle.classList.add('level-warning');
         level.textContent = '中高风险';
@@ -755,6 +898,9 @@ function submitResult() {
         principle.classList.add('principle-warning');
         principle.textContent = result.selectedPrinciple;
         vetoBadge.style.display = 'none';
+        const info = getLimitInfo(result.finalScore);
+        limitValue.textContent = info.limit;
+        limitRange.textContent = '分值范围：' + info.range;
     } else {
         scoreCircle.classList.add('level-danger');
         level.textContent = '极高风险';
@@ -763,6 +909,9 @@ function submitResult() {
         principle.classList.add('principle-danger');
         principle.textContent = result.selectedPrinciple;
         vetoBadge.style.display = 'none';
+        const info = getLimitInfo(result.finalScore);
+        limitValue.textContent = info.limit;
+        limitRange.textContent = '分值范围：' + info.range;
     }
     
     let detailHtml = '';
@@ -795,6 +944,8 @@ function exportFromModal() {
     let levelText = document.getElementById('resultLevel').textContent;
     let principleText = document.getElementById('resultPrinciple').textContent;
     let descText = document.getElementById('resultDesc').textContent;
+    let limitText = document.getElementById('limitValue').textContent;
+    let rangeText = document.getElementById('limitRange').textContent;
     
     let report = `============================================\n`;
     report += `     企业开户风险值评估报告\n`;
@@ -804,6 +955,8 @@ function exportFromModal() {
     report += `【综合风险值】${result.finalScore} 分\n`;
     report += `【风险等级】${levelText}\n`;
     report += `【管控原则】${principleText}\n`;
+    report += `【最高限额】${limitText}\n`;
+    report += `【${rangeText}】\n`;
     report += `【评估说明】${descText}\n`;
     report += `------------------------------------------\n`;
     report += `【评估明细】\n`;
