@@ -32,7 +32,6 @@
             opacity: 0.9;
         }
         
-        /* 已选摘要 */
         .selected-summary {
             background: white;
             border-radius: 16px;
@@ -61,9 +60,7 @@
             font-weight: bold;
             opacity: 0.6;
         }
-        .summary-tag .remove:hover {
-            opacity: 1;
-        }
+        .summary-tag .remove:hover { opacity: 1; }
         .empty-state {
             color: #94a3b8;
             font-size: 0.9em;
@@ -71,7 +68,6 @@
             padding: 20px;
         }
         
-        /* 维度卡片 */
         .dimension-card {
             background: white;
             border-radius: 16px;
@@ -138,7 +134,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* 选项样式 - 不显示分值 */
         .option-item {
             display: flex;
             align-items: flex-start;
@@ -178,9 +173,7 @@
         .option-item.veto input[type="checkbox"] {
             accent-color: #dc2626;
         }
-        .option-content {
-            flex: 1;
-        }
+        .option-content { flex: 1; }
         .option-name {
             font-weight: 600;
             color: #1e293b;
@@ -193,11 +186,8 @@
             margin-top: 4px;
             line-height: 1.5;
         }
-        .option-value {
-            display: none;
-        }
+        .option-value { display: none; }
         
-        /* 底部按钮 */
         .bottom-bar {
             position: fixed;
             bottom: 0;
@@ -232,9 +222,7 @@
             background: #f1f5f9;
             color: #475569;
         }
-        .btn-secondary:hover {
-            background: #e2e8f0;
-        }
+        .btn-secondary:hover { background: #e2e8f0; }
         .btn-submit {
             background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
             color: white;
@@ -246,13 +234,9 @@
             box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
         }
         
-        /* 结果弹窗 */
         .result-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0,0,0,0.6);
             display: none;
             align-items: center;
@@ -331,7 +315,6 @@
             margin-bottom: 16px;
         }
         
-        /* 最高限额 */
         .limit-box {
             background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
             border: 2px solid #f59e0b;
@@ -378,9 +361,7 @@
             padding: 4px 0;
             border-bottom: 1px dashed #e2e8f0;
         }
-        .result-detail-item:last-child {
-            border-bottom: none;
-        }
+        .result-detail-item:last-child { border-bottom: none; }
         .result-detail-dim {
             font-weight: 600;
             color: #3b82f6;
@@ -393,7 +374,6 @@
         .result-detail-val.negative { color: #dc2626; }
         .result-detail-val.veto { color: #7f1d1d; }
         
-        /* 颜色等级 */
         .level-excellent { background: linear-gradient(135deg, #22c55e, #16a34a); }
         .level-good { background: linear-gradient(135deg, #84cc16, #65a30d); }
         .level-normal { background: linear-gradient(135deg, #eab308, #ca8a04); }
@@ -423,22 +403,16 @@
             50% { transform: scale(1.05); }
         }
         
-        /* 提示弹窗 */
         .toast-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0,0,0,0.4);
             display: none;
             align-items: center;
             justify-content: center;
             z-index: 300;
         }
-        .toast-overlay.show {
-            display: flex;
-        }
+        .toast-overlay.show { display: flex; }
         .toast-modal {
             background: white;
             border-radius: 16px;
@@ -456,7 +430,6 @@
             margin-bottom: 16px;
         }
         
-        /* 响应式 */
         @media (max-width: 768px) {
             .header h1 { font-size: 1.6em; }
             .result-modal { padding: 24px; }
@@ -472,7 +445,6 @@
             <p>请勾选各维度对应的风险情形，完成后点击提交查看评估结果</p>
         </div>
         
-        <!-- 已选摘要 -->
         <div class="selected-summary" id="selectedSummary">
             <h4>📋 已选风险项</h4>
             <div id="summaryContent">
@@ -480,17 +452,14 @@
             </div>
         </div>
         
-        <!-- 维度卡片 -->
         <div id="dimensions"></div>
     </div>
     
-    <!-- 底部按钮 -->
     <div class="bottom-bar">
         <button class="btn btn-secondary" onclick="resetAll()">🔄 重置</button>
         <button class="btn btn-submit" onclick="submitResult()">✅ 提交评估</button>
     </div>
     
-    <!-- 结果弹窗 -->
     <div class="result-overlay" id="resultOverlay" onclick="closeResult(event)">
         <div class="result-modal" onclick="event.stopPropagation()">
             <h2>📊 企业开户风险评估结果</h2>
@@ -500,16 +469,15 @@
             </div>
             <div class="veto-badge" id="resultVetoBadge" style="display:none;">⚠️ 一票否决 - 禁止开户</div>
             <div class="result-level" id="resultLevel" style="color: #16a34a;">极低风险</div>
-            <div class="result-principle principle-excellent" id="resultPrinciple">全面容错</div>
+            <div class="result-principle principle-excellent" id="resultPrinciple">标准管控</div>
             
-            <!-- 最高限额 -->
             <div class="limit-box" id="limitBox">
-                <div class="limit-title">💰 最高限额</div>
+                <div class="limit-title">💰 非柜面最高限额</div>
                 <div class="limit-value" id="limitValue">30万</div>
-                <div class="limit-range" id="limitRange">分值范围：80分（不含）~ 100分</div>
+                <div class="limit-range" id="limitRange">安全系数：80 &lt; 分数 ≤ 100</div>
             </div>
             
-            <div class="result-desc" id="resultDesc">具备正规国资备案资质，经营稳定、合规体系完善</div>
+            <div class="result-desc" id="resultDesc">低风险实体大中型经营主体</div>
             
             <div class="result-detail" id="resultDetail">
                 <h4>📋 评估明细</h4>
@@ -521,7 +489,6 @@
         </div>
     </div>
     
-    <!-- 提示弹窗 -->
     <div class="toast-overlay" id="toastOverlay" onclick="closeToast()">
         <div class="toast-modal" onclick="event.stopPropagation()">
             <div class="toast-icon" id="toastIcon">⚠️</div>
@@ -531,89 +498,79 @@
     </div>
 
 <script>
-// ==================== 风险数据 ====================
+// ==================== 新版风险数据（最终版）====================
 const riskData = {
     "企业类型": {
         icon: "🏢",
         color: "#3b82f6",
         required: true,
         items: [
-            {name: "央企、国企、上市公司、政府平台企业等", value: 100, level: "极低风险", desc: "具备正规国资备案资质，经营稳定、合规体系完善，信息公开透明、监管严格、经营规范", principle: "全面容错"},
-            {name: "实体生产制造业、连锁实体商超、正规民办医疗机构、民办学校", value: 90, level: "低风险", desc: "有厂房/门店、资金以货款、工资为主，无不明居间资金，经营状态适中", principle: "标准管控"},
-            {name: "线下零售、餐饮、生鲜、物业、装修实体小微（无大额居间贸易）", value: 80, level: "中风险", desc: "门店小额经营，经营状态适中，无天然高危属性", principle: "标准管控"},
-            {name: "经营范围含劳务外包、人力资源、咨询类、设计类，企业管理、及线上交易，居间中介", value: 70, level: "中低风险", desc: "无实物贸易，易公私户互转、资金过渡，线上限额从严", principle: "标准管控"},
-            {name: "企业名称含科技、商贸、贸易，无实体货物，做信息对接、居间撮合", value: 60, level: "中高风险", desc: "高频批量代发、小额分散转账，出租账户高发行业", principle: "标准管控"},
-            {name: "经营范围含虚拟货币、外汇兑换、无资质投融资、不明跨境居间、大宗无货贸易", value: 50, level: "极高风险", desc: "涉赌涉诈、洗钱高频行业，直接最低档管控", principle: "标准管控"},
+            {name: "生产制造企业、全国连锁商超、区域性医药连锁机构、一级建筑总承包企业区域、连锁餐饮品牌、连锁医药药房、汽车4S经销门店、母婴连锁门店、线下建材批发商户、本土中型工程施工企业等", value: 100, level: "低风险实体大中型经营主体", desc: "低风险实体大中型经营主体", principle: "标准管控"},
+            {name: "生鲜果品门店、餐饮个体门店、烘焙经营门店、机动车维修门店、烟酒专营门店、社区家政服务机构、物业服务企业、广告设计机构、线下健身及摄影实体门店、线下美业休闲实体等", value: 90, level: "低风险小微线下实体门店", desc: "低风险小微线下实体门店", principle: "标准管控"},
+            {name: "人力资源劳务派遣企业、咨询机构、电商平台企业店铺、短视频本地生活实体商户、企业管理咨询、中介服务机构、文化传媒机构，包括各类线上服务机构等", value: 80, level: "线上线下融合实体商户", desc: "线上线下融合实体商户", principle: "标准管控"},
+            {name: "信息技术服务企业、无实体贸易、居间贸易且企业名称含科技、商贸、贸易等", value: 70, level: "中风险专业技术服务类", desc: "中风险专业技术服务类", principle: "标准管控"},
+            {name: "虚拟货币、外汇兑换、无资质投融资、不明跨境居间、大宗无货贸易等", value: 60, level: "中高风险居间中介结算类", desc: "中高风险居间中介结算类", principle: "标准管控"},
         ]
     },
-    "法人及实控人资质": {
+    "法人、实际控制人资质": {
         icon: "👤",
         color: "#8b5cf6",
         items: [
-            {name: "精准治核查高危", value: -40, desc: "涉诈前科高危人员"},
-            {name: "精准治核查可疑高危", value: -20, desc: "公安分析出的数据均属于高风险"},
-            {name: "当前有效限高令（未解除）", value: -20, desc: "人员高风险"},
-            {name: "历史限高，已结清解除（3年内）", value: -15, desc: "历史风险留存"},
-            {name: "年龄 ≤ 20周岁 或 年龄 ≥ 65周岁", value: -10, desc: "未成年/刚成年，高龄，履职能力与真实控制存疑，疑似挂名"},
-            {name: "年龄 20-25周岁 或 年龄 60-65周岁", value: -8, desc: "偏年轻，关注类"},
-            {name: "担任3个以上企业法人或存在多层嵌套（≥3层）股权结构", value: -5, desc: "职业法人，穿透识别难度大"},
-            {name: "关联企业注册地址高度集中（同一地址≥2家）", value: -5, desc: "集群注册空壳嫌疑"},
-            {name: "同一实控人批量注册多家同类企业", value: -5, desc: ""},
-            {name: "户籍地与企业经营地分属两省", value: -5, desc: "无合理经营佐证（无购销合同、无本地厂房门店）"},
-            {name: "异地户籍", value: -5, desc: "本地仅临时租住，居住未满6个月，无稳定经营场所"},
-        ]
-    },
-    "公司经营情况": {
-        icon: "📊",
-        color: "#06b6d4",
-        items: [
-            {name: "无法提供装修、设备采购、场地租赁、招工等前期筹备凭证", value: -20, desc: "空壳公司，无实际经营规划，开户用于资金过账、账户买卖"},
-            {name: "无任何前期经营沟通、订单、合作意向材料", value: -20, desc: ""},
-            {name: "主营业务、主要客户、供应商名称、结算周期、交易金额时含糊其辞、前后矛盾", value: -15, desc: ""},
-            {name: "预估营收与企业体量、场地、人员严重脱节、不合逻辑，且无合理解释", value: -20, desc: ""},
-            {name: "企业的经营事实与企业经营范围不符", value: -15, desc: ""},
-            {name: "经营异常、工商列入警示名单", value: -999, desc: "主体资质不合规，直接拉满本维度风险", veto: true},
+            {name: "精准治平台核查显示高危", value: -30, desc: "人员负面记录，涉诈前科高危人员"},
+            {name: "精准治平台核查显示可疑", value: -15, desc: "人员负面记录，公安分析出的可疑数据"},
+            {name: "法定代表人同时兼任3家及以上企业", value: -10, desc: "同一自然人同时登记为3户及以上企业法人，大概率存在挂名代持、身份出借，易多头资金混用，空壳企业风险偏高"},
+            {name: "企业股权架构层级≥5层，多层嵌套隐蔽实控", value: -5, desc: "股权穿透后持股层级达到三层及以上，链条冗长，实际控制人难以快速识别，存在隐匿主体、规避监管核查隐患"},
+            {name: "法定代表人年龄≤22周岁或≥65周岁", value: -20, desc: "年龄偏小普遍缺乏经营实力与行业经验，多出借证件挂名；年龄偏大经营管控能力弱，易交由他人操控账户，资金失控风险大"},
+            {name: "法定代表人持有未解除限制高消费令", value: -10, desc: "法人、实控人现存有效未结清限高文书，背负未履行债务，存在企业资产转移、账户被司法冻结扣划风险"},
+            {name: "法定代表人户籍地与企业经营地分属不同省份", value: -5, desc: "人员户籍和企业实际经营场地跨省分离，线下约谈、上门核验难度大，企业出现异常后人员追查处置成本高"},
         ]
     },
     "注册及经营场所情况": {
         icon: "📍",
         color: "#f59e0b",
         items: [
-            {name: "新设企业暂未开展业务，可提供场地、设备、招工筹备材料", value: -20, desc: ""},
-            {name: "注册地、经营地两地完全分离，无合理解释", value: -15, desc: "中高风险，账户失联风险高"},
-            {name: "经营场所临时、短期租赁，租期不足3个月，或居民楼", value: -20, desc: "中风险，短期开户转移资金后失联"},
-            {name: "经营场所与业务范围明显不匹配", value: -20, desc: ""},
-            {name: "一址多照（同一地址注册多家企业）、短期内频繁变更注册地址", value: -15, desc: "中高风险，涉诈、洗钱高发"},
-            {name: "地址为虚拟托管、产业园、孵化器、商务秘书公司、集群注册托管（无实体办公）", value: -20, desc: "高风险，极易为空壳、买卖账户、虚开发票主体"},
-            {name: "注册地址虚假、不存在、无法送达", value: -999, desc: "注册地址为企业孵化器、招商园区、托管中心、集中登记地", veto: true},
+            {name: "注册地址虚假不实、无法联系送达", value: -100, desc: "实地核查无该经营场所、物业/房东无法联系企业，信函上门无法签收，无实际经营痕迹", veto: true},
+            {name: "注册地址为集群托管、商务秘书、孵化基地等虚拟地址，无实体办公场所", value: -20, desc: "地址仅提供注册挂靠服务，无固定独立办公区域、无常驻办公人员，无实地经营条件"},
+            {name: "一址多照登记多家企业，或短期内频繁变更注册地址", value: -20, desc: "同一地址登记2家及以上企业；成立后短时间多次变更工商注册地址，规避实地核查"},
+            {name: "注册地与实际经营场所分离，暂无迁址变更规划且无合理理由", value: -10, desc: "工商注册地址与实际办公经营场地分属不同区域，企业短期内不计划变更工商登记地址，异地核查难度大"},
+            {name: "实际经营场所与主营业务明显不匹配", value: -20, desc: "场地规模、配套设施、场地类型无法支撑营业执照登记的主营行业开展经营"},
+            {name: "经营场所短期租赁（租期不足3个月）或位于居民住宅", value: -15, desc: "租赁协议有效期不足3个月；场地性质为纯住宅，不符合商事经营场所规范，存续经营风险高"},
         ]
     },
     "资料审查": {
         icon: "📑",
         color: "#ec4899",
         items: [
-            {name: "开户资料存在伪造、冒用、过期失效、信息虚假", value: -999, desc: "重大开户风险，直接判定本项0分，暂停开户", veto: true},
-            {name: "基础资料真实有效，部分辅助经营资料信息不一致、缺失，存在故意规避审查的情节", value: -30, desc: "辅助经营资料包括：租赁合同、购销、业务合同、完税凭证、水电缴费单、物业缴费单等"},
-            {name: "基础资料真实有效，部分辅助经营资料信息不一致、缺失、轻微瑕疵，可以补充完善", value: -10, desc: "部分辅助经营资料存在轻微瑕疵或暂时缺失，客户承诺限期补齐，无造假、冒用风险"},
-            {name: "拒绝提供公司章程、股东名册、股权转让协议等收益人识别资料或提供资料不完整不准确", value: -20, desc: ""},
-            {name: "营业执照成立15日内立即申请开立对公账户", value: -25, desc: ""},
-            {name: "营业执照注册6个月以内，申请开立账户", value: -10, desc: "无经营沉淀，账户异动风险极高"},
-            {name: "营业执照注册3年以上，申请开立基本存款账户", value: -10, desc: ""},
+            {name: "开户材料伪造、冒用、过期或信息虚假", value: -100, desc: "营业执照、身份证件、场地证明等原件存在变造、仿造；借用他人证件办理；证件超有效期；法人身份等关键信息与真实情况不符", veto: true},
+            {name: "基础材料真实，辅助资料缺失/矛盾，存在故意规避审查的情节", value: -20, desc: "执照、身份证等核心资料真实，但经营合同、场地凭证、上下游单据刻意不提供或内容相互冲突，刻意隐瞒真实经营情况逃避核查"},
+            {name: "基础材料真实，辅助资料存在缺失、不符，轻微瑕疵", value: -5, desc: "核心开户证件无误，仅经营佐证材料少量缺漏、数据轻微不一致，无刻意造假、隐瞒迹象"},
+            {name: "营业执照注册15日内申请开立开户", value: -15, desc: "企业刚完成工商登记，无筹备、经营沉淀，短期内随即申请开立对公账户，存在开立空壳账户走账嫌疑"},
+            {name: "营业执照注册未满6个月申请开立开户", value: -5, desc: "新设企业成立时间短，无长期经营记录，业务真实性、经营稳定性待重点核实"},
+            {name: "营业执照注册满3年申请开立基本户", value: -5, desc: "企业经营多年未开立对公基本户，长期使用个人账户结算，资金结算模式存疑"},
+        ]
+    },
+    "公司经营情况": {
+        icon: "📊",
+        color: "#06b6d4",
+        items: [
+            {name: "企业存在工商经营异常、被列入严重违法失信名单", value: -100, desc: "市场监管系统显示企业存在年报失联、地址异常、行政处罚等经营异常记录，或被标记重点警示主体，合规基础薄弱", veto: true},
+            {name: "企业无法提供订单、合作意向等经营佐证", value: -20, desc: "经银行要求后，不能提供合同、订单、上下游往来单据等任何能佐证真实业务的材料，无真实交易支撑"},
+            {name: "新设立企业暂无营收业务，但可提供场地、设备、招工筹备材料", value: -15, desc: "企业刚成立未产生实际业务流水，但可出具租赁合同、设备采购、招工计划等筹备证明，具备后续实体经营条件，风险偏低"},
+            {name: "企业人员主动提及账户走流水、代收刷单、资金过账、代为收款", value: -20, desc: "开户面谈时主动表述账户用于代收代付、刷单刷量、单纯资金周转过账，存在违规套现、分流资金嫌疑"},
+            {name: "企业人员不能清晰阐述经营模式与对公账户实际结算用途", value: -20, desc: "法人对主营收入来源、上下游客户、资金收付场景表述模糊、前后矛盾，无法说明账户正常经营使用场景"},
         ]
     },
     "开户行为及初期交易需求": {
         icon: "🔍",
         color: "#6366f1",
         items: [
-            {name: "同一经办人在同一网点开立3户及以上账户", value: -20, desc: ""},
-            {name: "开户核实环节法人或经办人行为异常", value: -30, desc: "法人对企业经营情况不了解，答非所问、背诵式回答企业经营信息；回避股权、上下游、营收问题；不愿留自有手机号，经办人有配合掩饰行为等"},
-            {name: "规避或拒绝提供佐证", value: -20, desc: "拒不提供股东身份证、出资流水、租赁合同、上下游合同等经营佐证；以隐私为由拒绝核实"},
-            {name: "重点询问网银、大额转账、公转私限额，对账户年费、对账、结算规则毫不关心", value: -15, desc: ""},
-            {name: "回避经营核查，逃避或拒绝上门尽调", value: -30, desc: ""},
-            {name: "急于开户、催促快速办结，回避经营问询", value: -30, desc: ""},
-            {name: "主动询问销户难易、能否多银行多头开户等试探行为", value: -20, desc: ""},
-            {name: "过度配合或拖沓不积极配合", value: -10, desc: ""},
-            {name: "其他异常可疑行为", value: -10, desc: "柜员现场发现的异常可疑行为"},
+            {name: "开户核验时法人、经办人答非所问、表述前后矛盾，举止异常", value: -20, desc: "面谈、视频核验期间神态紧张、答非所问、表述前后矛盾、话术刻意统一，存在代开户、挂名嫌疑"},
+            {name: "开户时急切要求开通网银转账功能，关注点偏离正常经营", value: -15, desc: "全程不关注账户年费、对账、结算规则，反复催促网银、大额转账、批量付款功能开通"},
+            {name: "开户时催促快速开户，回避经营相关问询", value: -10, desc: "频繁催办开户流程，当问及主营、上下游、营收、场地等经营问题时含糊敷衍、刻意转移话题"},
+            {name: "开户时打探销户、多头多银行开户等敏感问题", value: -10, desc: "主动询问快速销户、睡眠户处置、能否多家银行同步开立对公账户、异地开户限制等敏感内容"},
+            {name: "开户时回避、拒绝业务佐证及上门实地尽调", value: -20, desc: "以各种理由推脱、拒绝提供经营合同、场地凭证等佐证，拒不配合银行实地走访核查"},
+            {name: "开户时配合态度极端：过度顺从或消极拖延", value: -5, desc: "要么无底线全盘附和不核实业务细节，要么消极推脱、拒不补充任何经营相关材料"},
+            {name: "同一经办人在统一网点代办开户≥3户", value: -5, desc: "同一自然人作为经办人，短期内于同一网点代办3家及以上陌生企业开立对公账户，疑似批量代办空壳户"},
         ]
     }
 };
@@ -633,7 +590,7 @@ function renderDimensions() {
     for (const [dimName, dimData] of Object.entries(riskData)) {
         const requiredClass = dimData.required ? 'required' : '';
         html += `
-        <div class="dimension-card ${requiredClass}" id="card-${dimName.replace(/\\s+/g, '-').replace(/[及、]/g, '')}">
+        <div class="dimension-card ${requiredClass}" id="card-${dimName.replace(/[、,\\s]+/g, '-').replace(/[（）()]/g, '')}">
             <div class="dimension-header" onclick="toggleCard(this)">
                 <h3>
                     <span class="icon" style="background: ${dimData.color}20; color: ${dimData.color};">${dimData.icon}</span>
@@ -645,11 +602,11 @@ function renderDimensions() {
                 ${dimData.items.map((item, idx) => `
                     <div class="option-item ${item.veto ? 'veto' : ''}" 
                          onclick="toggleItem('${dimName}', ${idx}, event)"
-                         id="item-${dimName.replace(/\\s+/g, '-').replace(/[及、]/g, '')}-${idx}">
+                         id="item-${dimName.replace(/[、,\\s]+/g, '-').replace(/[（）()]/g, '')}-${idx}">
                         <input type="checkbox" 
                                ${dimName === '企业类型' ? 'name="enterpriseType"' : ''}
                                onchange="toggleItem('${dimName}', ${idx}, event)"
-                               id="cb-${dimName.replace(/\\s+/g, '-').replace(/[及、]/g, '')}-${idx}">
+                               id="cb-${dimName.replace(/[、,\\s]+/g, '-').replace(/[（）()]/g, '')}-${idx}">
                         <div class="option-content">
                             <div class="option-name">${item.name}</div>
                             ${item.desc ? `<div class="option-desc">${item.desc}</div>` : ''}
@@ -677,16 +634,18 @@ function toggleItem(dimName, idx, event) {
     
     const item = riskData[dimName].items[idx];
     const key = `${dimName}-${idx}`;
-    const checkbox = document.getElementById(`cb-${dimName.replace(/\\s+/g, '-').replace(/[及、]/g, '')}-${idx}`);
-    const optionEl = document.getElementById(`item-${dimName.replace(/\\s+/g, '-').replace(/[及、]/g, '')}-${idx}`);
+    const safeId = dimName.replace(/[、,\\s]+/g, '-').replace(/[（）()]/g, '');
+    const checkbox = document.getElementById(`cb-${safeId}-${idx}`);
+    const optionEl = document.getElementById(`item-${safeId}-${idx}`);
     
     if (dimName === '企业类型') {
         for (let i = 0; i < riskData[dimName].items.length; i++) {
             const otherKey = `${dimName}-${i}`;
             if (otherKey !== key && selectedItems[otherKey]) {
                 delete selectedItems[otherKey];
-                const otherCb = document.getElementById(`cb-${dimName.replace(/\\s+/g, '-').replace(/[及、]/g, '')}-${i}`);
-                const otherEl = document.getElementById(`item-${dimName.replace(/\\s+/g, '-').replace(/[及、]/g, '')}-${i}`);
+                const otherSafeId = dimName.replace(/[、,\\s]+/g, '-').replace(/[（）()]/g, '');
+                const otherCb = document.getElementById(`cb-${otherSafeId}-${i}`);
+                const otherEl = document.getElementById(`item-${otherSafeId}-${i}`);
                 if (otherCb) otherCb.checked = false;
                 if (otherEl) otherEl.classList.remove('selected');
             }
@@ -720,7 +679,7 @@ function updateSummary() {
         const item = data.item;
         html += `
             <span class="summary-tag" style="background: #e0e7ff; color: #3730a3; border: 1px solid #c7d2fe;">
-                ${data.dimName}: ${item.name}
+                ${data.dimName}: ${item.name.substring(0, 20)}${item.name.length > 20 ? '...' : ''}
                 <span class="remove" onclick="removeItem('${data.dimName}', ${data.idx}, event)">×</span>
             </span>
         `;
@@ -741,32 +700,41 @@ function resetAll() {
     closeResult();
 }
 
-// ==================== 限额标准 ====================
+// ==================== 新版限额标准（左开右闭）====================
+// 80 < 分数 ≤ 100 → 30万
+// 70 < 分数 ≤ 80  → 10万
+// 60 < 分数 ≤ 70  → 5万
+// 50 < 分数 ≤ 60  → 2.5万
+// 40 < 分数 ≤ 50  → 1万
+// 0  < 分数 ≤ 40  → 0.5万
+// 分数 = 0         → 0万
 function getLimitInfo(score) {
-    if (score > 80) {
-        return { limit: '30万', range: '80分（不含）~ 100分' };
+    if (score === 0) {
+        return { limit: '0万', range: '安全系数：0（一票否决）' };
+    } else if (score > 80) {
+        return { limit: '30万', range: '安全系数：80 < 分数 ≤ 100' };
     } else if (score > 70) {
-        return { limit: '10万', range: '70分（不含）~ 80分' };
+        return { limit: '10万', range: '安全系数：70 < 分数 ≤ 80' };
     } else if (score > 60) {
-        return { limit: '5万', range: '60分（不含）~ 70分' };
+        return { limit: '5万', range: '安全系数：60 < 分数 ≤ 70' };
     } else if (score > 50) {
-        return { limit: '1万', range: '50分（不含）~ 60分' };
+        return { limit: '2.5万', range: '安全系数：50 < 分数 ≤ 60' };
+    } else if (score > 40) {
+        return { limit: '1万', range: '安全系数：40 < 分数 ≤ 50' };
     } else {
-        return { limit: '0万', range: '0分（不含）~ 50分' };
+        return { limit: '0.5万', range: '安全系数：0 < 分数 ≤ 40' };
     }
 }
 
-// ==================== 计算结果（修复版）====================
 function calculateResult() {
     let baseScore = 0;
     let hasEnterpriseType = false;
     let hasVeto = false;
     let vetoReasons = [];
     let selectedPrinciple = "标准管控";
-    let selectedLevel = "中风险";
+    let selectedLevel = "低风险实体大中型经营主体";
     let detailItems = [];
     
-    // 先找企业类型
     for (const [key, data] of Object.entries(selectedItems)) {
         if (data.dimName === '企业类型') {
             baseScore = data.item.value;
@@ -778,12 +746,10 @@ function calculateResult() {
         }
     }
     
-    // 企业类型未选，返回null
     if (!hasEnterpriseType) {
         return null;
     }
     
-    // 再累加其他维度
     for (const [key, data] of Object.entries(selectedItems)) {
         if (data.dimName === '企业类型') continue;
         
@@ -804,7 +770,6 @@ function calculateResult() {
     return { finalScore, hasVeto, vetoReasons, selectedPrinciple, selectedLevel, detailItems };
 }
 
-// ==================== 提示弹窗 ====================
 function showToast(icon, text) {
     document.getElementById('toastIcon').textContent = icon;
     document.getElementById('toastText').textContent = text;
@@ -815,14 +780,11 @@ function closeToast() {
     document.getElementById('toastOverlay').classList.remove('show');
 }
 
-// ==================== 提交评估 ====================
 function submitResult() {
     const result = calculateResult();
     
-    // 企业类型未选，提示
     if (result === null) {
         showToast('⚠️', '请先选择【企业类型】');
-        // 自动展开企业类型卡片
         const card = document.getElementById('card-企业类型');
         if (card) card.classList.add('open');
         return;
@@ -856,62 +818,83 @@ function submitResult() {
         principle.textContent = '暂停开户';
         vetoBadge.style.display = 'inline-block';
         limitValue.textContent = '0万';
-        limitRange.textContent = '分值范围：一票否决';
-    } else if (result.finalScore >= 90) {
+        limitRange.textContent = '安全系数：0（一票否决）';
+    } else if (result.finalScore > 80) {
         scoreCircle.classList.add('level-excellent');
-        level.textContent = '极低风险';
+        level.textContent = result.selectedLevel;
         level.style.color = '#16a34a';
-        desc.textContent = '具备正规国资备案资质，经营稳定、合规体系完善，信息公开透明、监管严格、经营规范';
+        desc.textContent = result.selectedLevel;
         principle.classList.add('principle-excellent');
         principle.textContent = result.selectedPrinciple;
         vetoBadge.style.display = 'none';
         const info = getLimitInfo(result.finalScore);
         limitValue.textContent = info.limit;
-        limitRange.textContent = '分值范围：' + info.range;
-    } else if (result.finalScore >= 80) {
+        limitRange.textContent = info.range;
+    } else if (result.finalScore > 70) {
         scoreCircle.classList.add('level-good');
-        level.textContent = '低风险';
+        level.textContent = result.selectedLevel;
         level.style.color = '#65a30d';
-        desc.textContent = '有厂房/门店、资金以货款、工资为主，无不明居间资金，经营状态适中，执行标准风控尺度';
+        desc.textContent = result.selectedLevel;
         principle.classList.add('principle-good');
         principle.textContent = result.selectedPrinciple;
         vetoBadge.style.display = 'none';
         const info = getLimitInfo(result.finalScore);
         limitValue.textContent = info.limit;
-        limitRange.textContent = '分值范围：' + info.range;
-    } else if (result.finalScore >= 60) {
+        limitRange.textContent = info.range;
+    } else if (result.finalScore > 60) {
         scoreCircle.classList.add('level-normal');
-        level.textContent = '中风险 / 中低风险';
+        level.textContent = result.selectedLevel;
         level.style.color = '#ca8a04';
-        desc.textContent = '门店小额经营或线上交易为主，经营状态适中，需关注资金往来合规性';
+        desc.textContent = result.selectedLevel;
         principle.classList.add('principle-normal');
         principle.textContent = result.selectedPrinciple;
         vetoBadge.style.display = 'none';
         const info = getLimitInfo(result.finalScore);
         limitValue.textContent = info.limit;
-        limitRange.textContent = '分值范围：' + info.range;
-    } else if (result.finalScore >= 40) {
+        limitRange.textContent = info.range;
+    } else if (result.finalScore > 50) {
         scoreCircle.classList.add('level-warning');
-        level.textContent = '中高风险';
+        level.textContent = result.selectedLevel;
         level.style.color = '#ea580c';
-        desc.textContent = '高频批量代发、小额分散转账，出租账户高发行业，需从严管控';
+        desc.textContent = result.selectedLevel;
         principle.classList.add('principle-warning');
         principle.textContent = result.selectedPrinciple;
         vetoBadge.style.display = 'none';
         const info = getLimitInfo(result.finalScore);
         limitValue.textContent = info.limit;
-        limitRange.textContent = '分值范围：' + info.range;
-    } else {
+        limitRange.textContent = info.range;
+    } else if (result.finalScore > 40) {
         scoreCircle.classList.add('level-danger');
-        level.textContent = '极高风险';
+        level.textContent = '高风险 - 建议从严管控';
         level.style.color = '#dc2626';
-        desc.textContent = '涉赌涉诈、洗钱高频行业，直接最低档管控，建议拒绝开户';
+        desc.textContent = '安全系数低于50分，建议从严管控';
         principle.classList.add('principle-danger');
         principle.textContent = result.selectedPrinciple;
         vetoBadge.style.display = 'none';
         const info = getLimitInfo(result.finalScore);
         limitValue.textContent = info.limit;
-        limitRange.textContent = '分值范围：' + info.range;
+        limitRange.textContent = info.range;
+    } else if (result.finalScore > 0) {
+        scoreCircle.classList.add('level-danger');
+        level.textContent = '极高风险 - 建议拒绝开户';
+        level.style.color = '#dc2626';
+        desc.textContent = '安全系数低于40分，建议拒绝开户';
+        principle.classList.add('principle-danger');
+        principle.textContent = result.selectedPrinciple;
+        vetoBadge.style.display = 'none';
+        const info = getLimitInfo(result.finalScore);
+        limitValue.textContent = info.limit;
+        limitRange.textContent = info.range;
+    } else {
+        scoreCircle.classList.add('level-veto');
+        level.textContent = '一票否决 - 禁止开户';
+        level.style.color = '#7f1d1d';
+        desc.textContent = '安全系数为0，禁止开户';
+        principle.classList.add('principle-veto');
+        principle.textContent = '暂停开户';
+        vetoBadge.style.display = 'inline-block';
+        limitValue.textContent = '0万';
+        limitRange.textContent = '安全系数：0';
     }
     
     let detailHtml = '';
@@ -920,7 +903,7 @@ function submitResult() {
         if (d.isVeto) valClass = 'veto';
         let valText = d.isVeto ? '一票否决' : (d.value > 0 ? '+' : '') + d.value;
         detailHtml += `<div class="result-detail-item">
-            <span class="result-detail-dim">${d.dim}</span>: ${d.name}
+            <span class="result-detail-dim">${d.dim}</span>: ${d.name.substring(0, 40)}${d.name.length > 40 ? '...' : ''}
             <span class="result-detail-val ${valClass}">${valText}</span>
         </div>`;
     });
@@ -955,7 +938,7 @@ function exportFromModal() {
     report += `【综合风险值】${result.finalScore} 分\n`;
     report += `【风险等级】${levelText}\n`;
     report += `【管控原则】${principleText}\n`;
-    report += `【最高限额】${limitText}\n`;
+    report += `【非柜面最高限额】${limitText}\n`;
     report += `【${rangeText}】\n`;
     report += `【评估说明】${descText}\n`;
     report += `------------------------------------------\n`;
